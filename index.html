@@ -1,0 +1,1517 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#f8f5ee">
+    <meta name="description" content="Rosalies Zahlenland: das Einmaleins, Teilen und Malnehmen üben – mit verständlichen Aufgaben, Denktipps und Hilfe in kleinen Schritten.">
+    <title>Rosalies Zahlenland · Version 18</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='19' fill='%23a55486'/%3E%3Ctext x='32' y='46' text-anchor='middle' font-size='43'%3E%F0%9F%8C%9F%3C/text%3E%3C/svg%3E">
+    <style>
+:root {
+  color-scheme: light;
+  --paper: #f8f5ee;
+  --ink: #243833;
+  --muted: #668079;
+  --forest: #27685f;
+  --forest-dark: #1e544c;
+  --line: #e3e7df;
+  --coral: #f7aa87;
+  --lavender: #e8e2fa;
+  --mint: #e0f2e7;
+  --sun: #ffd77c;
+  --white: #fffdfa;
+  font-family: ui-rounded, -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  font-synthesis: none;
+}
+* {box-sizing: border-box}
+html {min-height: 100%; background: var(--paper)}
+body {margin: 0; color: var(--ink); background: radial-gradient(ellipse at top left, #fff8e5 0%, transparent 44%), var(--paper); min-height: 100vh}
+button, select {font: inherit}
+button {cursor: pointer}
+button:focus-visible, select:focus-visible {outline: 3px solid #297d8e; outline-offset: 4px}
+.site-shell {max-width: 980px; padding: 0 24px; margin: 0 auto; min-height: 100vh; display: flex; flex-direction: column}
+.topbar {display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 23px 0 22px}
+.brand {display: flex; align-items: center; gap: 10px; border: 0; background: none; text-align: left; color: var(--ink); padding: 0; font-size: 11px; letter-spacing: .09em; font-weight: 800; line-height: 1.5}
+.brand b {display: block; letter-spacing: .075em; font-size: 15px}
+.brand-icon {width: 39px; height: 39px; flex: 0 0 39px; border-radius: 14px; background: var(--forest); color: #fff; display: grid; place-items: center; font-size: 24px}
+.topbar-note {display: inline-flex; align-items: center; gap: 7px; font-size: 12px; color: var(--forest-dark); font-weight: 700; white-space: nowrap}
+.note-dot {height: 8px; width: 8px; display: inline-block; background: #79bf87; border-radius: 50%}
+main {flex: 1}
+.hero {position: relative; display: grid; grid-template-columns: 1.25fr .75fr; align-items: center; min-height: 266px; padding: 40px 45px 42px; border-radius: 29px; background: var(--forest-dark); color: #fff; overflow: hidden; box-shadow: 0 14px 40px #1d534622}
+.hero:before {content: ""; position: absolute; inset: auto -70px -125px 22%; height: 250px; border-radius: 50% 50% 0 0; background: #357e6c}
+.hero:after {content: ""; position: absolute; inset: auto -55px -150px 51%; height: 245px; border-radius: 50% 50% 0 0; background: #47917b}
+.hero-content {z-index: 1; position: relative; max-width: 560px}
+.eyebrow {display: inline-flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: .07em; text-transform: uppercase; font-weight: 800; color: #d3f1db; margin-bottom: 15px}
+h1, h2, h3, p {margin-top: 0}
+.hero h1 {font-size: clamp(30px, 5vw, 47px); letter-spacing: -.035em; line-height: 1.13; margin: 0 0 13px; font-weight: 850}
+.hero p {font-size: 16px; line-height: 1.55; color: #e5f3ec; max-width: 440px; margin: 0}
+.hero-illustration {position: relative; height: 190px; z-index: 1}
+.sun {position: absolute; top: 2px; right: 34px; width: 114px; height: 114px; background: #ffd980; border-radius: 50%; box-shadow: 0 0 0 14px #ffffff17}
+.cloud {position: absolute; background: #e9fbf3; height: 21px; width: 82px; border-radius: 20px; opacity: .91; top: 28px; left: 5px}
+.cloud:before {content: ""; position: absolute; height: 36px; width: 38px; border-radius: 50%; background: inherit; left: 15px; top: -17px}
+.island {position: absolute; font-weight: 900; background: #fff7dd; color: #2c625a; width: 68px; height: 60px; border-radius: 45% 55% 48% 52%; box-shadow: 0 8px 0 #d4a863, 0 14px 25px #103f3580; display: grid; place-items: center; transform: rotate(-8deg)}
+.island.a {left: 15px; top: 115px; font-size: 28px}
+.island.b {left: 103px; top: 77px; transform: rotate(11deg); font-size: 30px}
+.island.c {left: 190px; top: 128px; transform: rotate(-6deg); font-size: 28px}
+.hero-star {position: absolute; top: 110px; left: 178px; color: #ffda8b; font-size: 26px}
+.section-heading {display: flex; align-items: end; justify-content: space-between; gap: 12px; margin: 33px 0 18px}
+.section-heading h2 {font-size: clamp(20px, 3.8vw, 26px); margin: 0; letter-spacing: -.035em}
+.section-heading p {margin: 7px 0 0; font-size: 14px; color: var(--muted)}
+.session-pill {background: #fff; border: 1px solid var(--line); border-radius: 99px; padding: 9px 13px; color: var(--forest-dark); font-size: 12px; font-weight: 800; white-space: nowrap}
+.mode-grid {display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px}
+.mode-card {position: relative; min-height: 205px; border: 1px solid #ece8dc; border-radius: 24px; padding: 24px 25px; text-align: left; background: var(--white); transition: transform .15s, box-shadow .15s; box-shadow: 0 5px 16px #1c3d3607; color: var(--ink)}
+.mode-card:hover {transform: translateY(-3px); box-shadow: 0 13px 24px #1c3d3614}
+.mode-card:active {transform: translateY(0)}
+.mode-card.primary {background: var(--mint)}
+.mode-card.multiply {background: #fff0df}
+.mode-card.warmup {background: var(--lavender); min-height: 165px; grid-column: 1 / -1; display: flex; align-items: center; gap: 23px}
+.mode-icon {height: 53px; width: 53px; display: grid; place-items: center; border-radius: 18px; font-size: 27px; background: #fff; box-shadow: 0 5px 15px #2a5f5012; margin-bottom: 21px}
+.warmup .mode-icon {flex: 0 0 53px; margin: 0}
+.mode-text {flex: 1}
+.mode-card h3 {font-size: 23px; letter-spacing: -.03em; margin: 0 0 7px}
+.mode-card p {color: #5f746e; font-size: 14px; line-height: 1.5; margin: 0}
+.example {display: inline-block; margin-top: 11px; font-size: 14px; font-weight: 800; color: var(--forest-dark)}
+.card-arrow {position: absolute; top: 25px; right: 22px; background: #ffffff95; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-weight: 900; font-size: 19px}
+.tip-banner {margin-top: 17px; display: flex; align-items: flex-start; gap: 15px; border: 1px solid #e7e7dd; border-radius: 19px; padding: 19px 23px; background: #fffdf8}
+.tip-banner strong {font-size: 14px; display: block; margin: 0 0 4px}
+.tip-banner p {font-size: 13px; line-height: 1.55; margin: 0; color: var(--muted)}
+.tip-emoji {font-size: 22px}
+.footer {padding: 30px 0 22px; color: #85958e; text-align: center; font-size: 12px}
+.footer span {color: #df9a83}
+.activity-top {display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 8px 0 25px}
+.back {border: 0; color: var(--forest-dark); background: transparent; font-size: 14px; font-weight: 800; display: inline-flex; gap: 7px; align-items: center; padding: 10px 4px}
+.round-count {font-size: 12px; font-weight: 800; color: #667e73}
+.activity-heading {text-align: center; margin: 0 auto 26px; max-width: 660px}
+.activity-heading .overline {font-weight: 800; color: var(--forest); font-size: 12px; text-transform: uppercase; letter-spacing: .1em; display: block; margin-bottom: 9px}
+.activity-heading h1 {font-size: clamp(27px, 5vw, 40px); line-height: 1.14; letter-spacing: -.04em; margin: 0 0 11px}
+.activity-heading p {color: #65776e; font-size: 15px; line-height: 1.5; margin: 0}
+.progress-track {max-width: 550px; display: flex; gap: 7px; margin: 0 auto 21px}
+.progress-cell {height: 8px; border-radius: 10px; flex: 1; background: #e2e9df}
+.progress-cell.done {background: #61b18e}
+.progress-cell.current {background: var(--sun)}
+.task-card {max-width: 640px; margin: auto; border-radius: 27px; border: 1px solid #e8e9df; background: var(--white); padding: 29px 38px 32px; box-shadow: 0 10px 40px #2852470b}
+.task-equation {font-size: clamp(29px, 7vw, 43px); font-weight: 850; letter-spacing: -.045em; text-align: center; color: var(--forest-dark); margin: 2px auto 19px; font-variant-numeric: tabular-nums}
+.step-badge {display: table; margin: 0 auto 13px; border-radius: 99px; padding: 7px 13px; background: #f2ebff; font-weight: 800; font-size: 11px; letter-spacing: .06em; color: #6750aa; text-transform: uppercase}
+.step-title {text-align: center; font-size: 19px; margin: 0 0 7px; letter-spacing: -.025em}
+.step-detail {text-align: center; color: var(--muted); line-height: 1.5; font-size: 14px; margin: 0 auto 23px; max-width: 460px}
+.options {display: grid; gap: 10px; grid-template-columns: repeat(3, 1fr); margin: 12px 0 21px}
+.option {min-height: 83px; border-radius: 17px; color: var(--ink); background: #f6f8f3; border: 2px solid #e8eee6; font-weight: 800; font-size: clamp(17px, 2.8vw, 23px); line-height: 1.25; font-variant-numeric: tabular-nums; padding: 10px; transition: background .12s, transform .12s}
+.option:hover:not(:disabled) {background: #e4f2e8; transform: translateY(-2px)}
+.option:active:not(:disabled) {transform: scale(.98)}
+.option:disabled {cursor: default; opacity: .60}
+.option.correct {background: #daf2df; border-color: #66b68d; color: #205d46; opacity: 1}
+.support-row {display: flex; justify-content: center; min-height: 42px; align-items: center}
+.hint-button {color: var(--forest); border: 0; background: none; padding: 10px; font-size: 14px; font-weight: 800; text-decoration: underline; text-underline-offset: 4px}
+.hint-box {background: #fff6db; border: 1px solid #f1dc9c; border-radius: 16px; color: #66511e; padding: 14px 17px; font-size: 14px; line-height: 1.55; margin: 11px 0 16px}
+.feedback {margin: 2px auto 16px; font-size: 14px; text-align: center; color: #87612c; line-height: 1.5; min-height: 20px}
+.feedback.success {color: #276e50; font-weight: 800; font-size: 16px}
+.continue {background: var(--forest); border: none; border-radius: 16px; color: #fff; min-height: 55px; padding: 14px 25px; font-size: 15px; font-weight: 800; box-shadow: 0 7px 0 #164b42; width: 100%}
+.continue:hover {background: #1f5b51}
+.continue:active {transform: translateY(3px); box-shadow: 0 4px 0 #164b42}
+.equation-steps {background: #f3f7f3; padding: 14px; border-radius: 15px; color: #607a6e; text-align: center; font-size: 13px; margin: 2px 0 18px; line-height: 1.6; font-weight: 650}
+.finish {text-align: center; max-width: 640px; margin: 36px auto; padding: 42px 30px 38px; background: #fffdf8; border: 1px solid var(--line); border-radius: 29px; box-shadow: 0 12px 32px #2a4e390b}
+.finish-graphic {font-size: 78px; line-height: 1.1; margin-bottom: 17px}
+.finish h1 {font-size: clamp(31px, 6vw, 44px); letter-spacing: -.05em; margin: 0 0 15px}
+.finish p {color: var(--muted); line-height: 1.62; font-size: 16px; max-width: 480px; margin: 0 auto 22px}
+.finish .continue {max-width: 300px}
+.finish-signoff {background: #e8f5ea; padding: 13px 16px; border-radius: 14px; color: #35634c; margin-bottom: 22px; font-weight: 750; font-size: 13px}
+.row-choose {max-width: 640px; margin: 0 auto 20px; padding: 13px 16px; background: #efeafd; border-radius: 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px}
+.row-choose label {font-size: 14px; font-weight: 800; color: #59498c}
+.row-choose select {border: 1px solid #c9bdeb; border-radius: 12px; background: #fff; padding: 10px 14px; min-width: 135px; color: var(--ink); font-size: 15px; font-weight: 750}
+.card-extra {font-size: 12px; color: #7a8b80; margin-top: 19px; text-align: center}
+@media (max-width: 680px) {
+  .site-shell {padding: 0 16px}
+  .topbar {padding: 16px 0 17px}
+  .topbar-note {display: none}
+  .hero {padding: 29px 26px; grid-template-columns: 1fr; min-height: 200px}
+  .hero p {max-width: 270px; font-size: 14px}
+  .hero-illustration {position: absolute; right: -88px; bottom: -24px; height: 148px; width: 210px; opacity: .62}
+  .sun {width: 76px; height: 76px; right: 75px; top: 0}
+  .island {width: 55px; height: 48px}
+  .island.a {top: 98px; left: 5px}
+  .island.b {top: 63px; left: 73px}
+  .island.c {top: 97px; left: 147px}
+  .section-heading {margin: 26px 0 15px}
+  .session-pill {display: none}
+  .mode-grid {grid-template-columns: 1fr; gap: 11px}
+  .mode-card {min-height: 150px; padding: 17px 19px}
+  .mode-card h3 {font-size: 21px}
+  .mode-icon {margin-bottom: 10px; height: 43px; width: 43px; font-size: 24px; border-radius: 14px}
+  .mode-card.warmup {min-height: 120px; padding: 17px 19px; gap: 15px}
+  .warmup .mode-icon {flex: 0 0 43px}
+  .tip-banner {padding: 16px}
+  .task-card {padding: 24px 17px 26px}
+  .activity-top {margin-bottom: 20px}
+  .activity-heading {margin-bottom: 20px}
+  .task-equation {margin-bottom: 18px}
+  .step-detail {margin-bottom: 18px}
+  .options {gap: 8px}
+  .option {font-size: 17px; border-radius: 14px; min-height: 77px; padding: 7px}
+  .finish {padding: 33px 22px}
+}
+@media (max-width: 370px) {
+  .site-shell {padding: 0 12px}
+  .brand b {font-size: 13px}
+  .hero h1 {font-size: 31px}
+  .option {font-size: 15px}
+  .row-choose {flex-direction: column; align-items: stretch}
+}
+@media (prefers-reduced-motion: reduce) {
+  * {transition: none !important; animation: none !important}
+}
+
+/* Rosalie's gentle pastel garden and large, unambiguous current question. */
+:root {
+  --paper: #fcf7f9;
+  --ink: #3f3141;
+  --muted: #766b7d;
+  --forest: #984978;
+  --forest-dark: #803a65;
+  --line: #efdfeb;
+  --mint: #fbe3f0;
+  --lavender: #eee3fa;
+  --white: #fffefc;
+}
+body {background: radial-gradient(ellipse at top left,#fff0e1 0%,transparent 42%),var(--paper)}
+.brand-icon {background:#a55486}
+.topbar-note {color:#95517d}
+.note-dot {background:#f4a1c5}
+.hero.magic-hero {background:linear-gradient(125deg,#783f78,#b46e99 80%);box-shadow:0 14px 34px #793f7a20}
+.hero.magic-hero:before {background:#d389ad;opacity:.70}
+.hero.magic-hero:after {background:#eba9c8;opacity:.62}
+.magic-heart {position:absolute;right:44px;top:20px;font-size:92px;filter:drop-shadow(0 8px 7px #5b2e4855);transform:rotate(-13deg)}
+.magic-flower {position:absolute;left:20px;bottom:17px;font-size:79px;filter:drop-shadow(0 6px 8px #5b2e4850);transform:rotate(12deg)}
+.magic-spark {position:absolute;right:9px;bottom:27px;font-size:47px}
+.hero .eyebrow {color:#ffe7f7}
+.hero p {color:#ffedf5}
+.mode-card.primary {background:#fee7f1}
+.mode-card.multiply {background:#fff0e8}
+.mode-card.warmup {background:#f1e9fb}
+.example {color:#874771}
+.session-pill {color:#8e4678}
+.tip-banner {background:#fffafd}
+.activity-heading {margin-bottom:20px}
+.activity-heading h1 {font-size:20px;letter-spacing:-.02em;font-weight:700;color:#807080}
+.activity-heading .overline {color:#a6538a}
+.progress-cell.current {background:#f1a3c9}
+.progress-cell.done {background:#a468b0}
+.updated-task {max-width:690px;padding:30px 36px 32px}
+.updated-task .step-badge {background:#f8e3f3;color:#934d83}
+.main-question {font-size:clamp(29px,4.5vw,41px);letter-spacing:-.045em;line-height:1.18;text-align:center;margin:4px auto 12px;max-width:580px;color:#76395f;font-weight:850}
+.original-task {font-size:13px;color:#827889;text-align:center;margin:0 auto 15px}
+.original-task strong {font-size:15px;color:#6a5369;letter-spacing:.01em}
+.updated-task .step-detail {font-size:15px;color:#5e5265;font-weight:650;margin:0 auto 20px}
+.story-panel {background:linear-gradient(125deg,#fff6e8,#fff0f7);border:1px solid #f2dfe8;border-radius:19px;padding:17px 18px 18px;margin:0 0 22px;text-align:center}
+.story-heading {font-size:12px;font-weight:850;letter-spacing:.07em;text-transform:uppercase;color:#a34d82;margin-bottom:8px}
+.story-panel p {font-size:15px;line-height:1.56;font-weight:650;max-width:560px;margin:0 auto 15px}
+.story-scene {display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap}
+.pile {min-width:96px;min-height:68px;border:1px solid #edcddd;background:#fffefd;border-radius:16px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:0;font-size:20px;padding:6px 10px}
+.pile b {font-size:24px;font-variant-numeric:tabular-nums}
+.pile small {font-size:11px;color:#8c7890}
+.pile.pale {background:#fae8f8}
+.story-arrow {color:#a95b96;font-size:23px;font-weight:800}
+.baskets {display:flex;gap:5px;max-width:400px;flex-wrap:wrap;align-items:center;justify-content:center}
+.recipient-stack {display:flex;flex-direction:column;align-items:center;gap:5px;max-width:400px}
+.recipient-caption {font-size:12px;color:#84476e;font-weight:850}
+.little-object {display:flex;align-items:center;justify-content:center;line-height:1;background:#fffefd;border:1px solid #f0d4e5;border-radius:11px;width:44px;height:49px}
+.recipient-emoji {font-size:26px;line-height:1}
+.recipient-graphic {display:inline-block;position:relative;flex:none}
+.can-graphic {width:26px;height:31px;border:2px solid #4b9aa8;border-radius:6px 6px 9px 9px;background:linear-gradient(90deg,#bfeef3,#e3fafd 48%,#91d2df);box-shadow:inset 0 -3px 0 #81c8d6}
+.can-graphic:before {content:"";position:absolute;left:-2px;right:-2px;top:-5px;height:9px;border:2px solid #4b9aa8;border-radius:50%;background:#c5f4fa}
+.tray-graphic {width:32px;height:14px;border:3px solid #ba7595;border-top:5px solid #e8b0cb;border-radius:1px 1px 9px 9px;background:#ffe5f0;transform:rotate(-5deg)}
+.table-graphic {width:33px;height:8px;border-radius:4px;background:#d694ad;box-shadow:0 2px 0 #965b79}
+.table-graphic:before,.table-graphic:after {content:"";position:absolute;top:6px;width:4px;height:19px;background:#965b79;border-radius:0 0 2px 2px}
+.table-graphic:before {left:4px}.table-graphic:after {right:4px}
+.sheet-graphic {width:26px;height:30px;border:2px solid #ad85b7;background:radial-gradient(circle,#e588ba 0 3px,transparent 4px) 3px 3px / 12px 12px,#fff;border-radius:3px;color:#b15f9b;font-size:11px;padding-top:7px}
+.coin-scene {display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:6px;max-width:440px;margin:auto}
+.coin {height:40px;width:40px;border-radius:50%;border:2px solid #bb904a;box-shadow:inset 0 0 0 3px #fdf1c3;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:15px;line-height:1.1;color:#694916;font-weight:850;background:#e6c16d}
+.coin small {font-size:9px}
+.hops {display:flex;flex-wrap:wrap;gap:5px;justify-content:center;max-width:450px;margin:auto}
+.hop {height:45px;width:43px;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:12px;background:#ebccec;color:#884576;font-size:16px;font-weight:850;transform:rotate(-3deg)}
+.hop:nth-child(2n) {background:#f8d9b4;transform:rotate(3deg)}
+.hop small {font-size:10px}
+.answer-section {display:flex;flex-direction:column;align-items:center;gap:8px;margin:6px auto 17px}
+.answer-label {font-size:12px;font-weight:800;color:#9b5081;letter-spacing:.05em;text-transform:uppercase}
+.answer-screen {height:75px;min-width:200px;max-width:100%;padding:10px 25px;background:#fff;border:3px solid #e6c6db;border-radius:19px;display:grid;place-items:center;font-size:38px;line-height:1;font-weight:900;letter-spacing:.09em;color:#673554;font-variant-numeric:tabular-nums}
+.answer-screen.solved {background:#e6f5e7;border-color:#78b88a;color:#246a4d}
+.answer-placeholder {color:#d5b5cd}
+.num-pad {display:grid;grid-template-columns:repeat(3,1fr);gap:9px;max-width:340px;margin:0 auto 14px}
+.key {min-width:0;width:100%;height:58px;border-radius:15px;border:2px solid #efdfeb;background:#fff;color:#563b53;font-weight:850;font-size:24px;box-shadow:0 4px 0 #eddaeb;touch-action:manipulation}
+.key:active {transform:translateY(2px);box-shadow:0 2px 0 #eddaeb}
+.key.delete {background:#f5e8f4;color:#895279}
+.key.check {background:#99517f;color:#fff;border-color:#99517f;box-shadow:0 4px 0 #673857}
+.help-buttons {display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:11px 0 10px}
+.help-button {border:0;border-radius:14px;padding:14px 8px;min-height:52px;font-size:14px;font-weight:850}
+.help-button.thought {background:#fff1d8;color:#7c5a2e}
+.help-button.magic {background:#eddcff;color:#6a4385}
+.solved-magic {display:block;width:100%;margin:0 auto 15px}
+.hint-box {background:#fff9e9;border-color:#f7dfa8;color:#624d27;text-align:left}
+.magic-box {border-radius:17px;padding:16px 18px;background:linear-gradient(145deg,#f4e3fe,#fce9f2);border:1px solid #e6c9ef;color:#634477;margin:12px 0 16px;line-height:1.56;font-size:14px}
+.magic-box strong {font-size:16px}
+.magic-box p {margin:9px 0}
+.magic-box small {display:block;font-weight:750;color:#78568e}
+.magic-list {margin:11px 0 2px;padding-left:24px;display:grid;gap:7px;font-size:15px;font-weight:700;line-height:1.4}
+.magic-list li {padding-left:3px}
+.magic-list li::marker {color:#a85693;font-weight:900}
+.together {display:block;margin:14px auto 0;padding:9px 10px;border:0;background:transparent;color:#825070;text-decoration:underline;text-underline-offset:4px;font-size:13px;font-weight:750}
+.feedback {margin:10px 0 12px;color:#7b5b6f;font-weight:650;min-height:0}
+.feedback.success {color:#2e6c50}
+.correct-result {text-align:center;margin-bottom:17px}
+.heart-celebration {display:block;font-size:27px;animation:heart-rise .9s ease-out both;transform-origin:center}
+@keyframes heart-rise {from{opacity:0;transform:translateY(15px) scale(.72)}60%{opacity:1;transform:translateY(-4px) scale(1.09)}to{opacity:1;transform:translateY(0) scale(1)}}
+.correct-result .equation-steps {color:#246a4d;background:#e9f7eb;font-size:15px;font-weight:800}
+.continue {background:#a24d85;box-shadow:0 7px 0 #703354}
+.continue:hover {background:#8f3c74}
+.continue:active {box-shadow:0 4px 0 #703354}
+.card-extra {color:#8d7e8c}
+.pink-finish {background:#fffbfd}
+.pink-finish .eyebrow {color:#9b4d82 !important}
+.pink-finish .finish-signoff {background:#fce5f0;color:#874876}
+@media(max-width:680px) {
+  .hero.magic-hero {min-height:206px}
+  .hero.magic-hero p {max-width:285px}
+  .magic-heart {font-size:72px;top:39px;right:30px}
+  .magic-flower {font-size:55px;left:5px;bottom:15px}
+  .magic-spark {font-size:35px;right:10px;bottom:30px}
+  .updated-task {padding:22px 15px 24px}
+  .main-question {font-size:clamp(26px,7vw,32px)}
+  .story-panel {padding:14px 12px}
+  .story-panel p {font-size:14px}
+  .little-object {width:37px;height:44px}
+  .baskets {max-width:270px}
+  .num-pad {max-width:290px}
+  .key {height:53px}
+  .answer-screen {height:68px;font-size:35px}
+}
+@media(prefers-reduced-motion:reduce) {.heart-celebration {animation:none}}
+
+/* One unmistakable question, with the reasoning pattern always visible. */
+.question-clarifier {margin:0 auto 9px;text-align:center;font-size:14px;font-weight:850;color:#9d427d;line-height:1.4}
+.updated-task .original-task {margin:0 auto 16px;font-size:13px;color:#87768a}
+.updated-task .original-task strong {font-size:13px;color:#796b80}
+.plan-panel {background:#f7edf9;border:1px solid #ead7f2;border-radius:18px;padding:15px 17px;margin:4px auto 15px;max-width:610px}
+.plan-panel > strong {display:block;text-align:center;color:#7b477e;font-size:14px;margin-bottom:7px}
+.plan-panel > p {font-size:13px;line-height:1.55;text-align:center;color:#705a75;margin:0 auto 13px;max-width:550px}
+.plan-steps {list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:7px;justify-content:center}
+.plan-step {display:flex;align-items:center;gap:5px;background:#fff;color:#7c6b83;border:1px solid #e9dbed;border-radius:12px;padding:7px 9px;font-size:12px;font-weight:750}
+.plan-step span {display:grid;place-items:center;width:18px;height:18px;flex:0 0 18px;border-radius:50%;background:#eee1f0;color:#8c5e8d;font-size:11px}
+.plan-step.active {border:2px solid #bc70a2;background:#ffeaf5;color:#85345f;padding:6px 8px}
+.plan-step.active span {background:#ae5d8e;color:#fff}
+.plan-step.done {color:#397958;background:#eff9ee;border-color:#cce8d3}
+.plan-step.done span {background:#6aaa87;color:#fff}
+.activity-tools {display:flex;align-items:center;gap:17px}
+.sound-toggle {border:1px solid #e7cadb;border-radius:999px;background:#fff7fc;padding:8px 12px;min-height:35px;color:#845070;font-size:12px;font-weight:800}
+.sound-toggle[aria-pressed="true"] {background:#f8e0f0;border-color:#b77ba6;color:#783c69}
+@media(max-width:680px) {
+  .question-clarifier {font-size:13px}
+  .plan-panel {padding:12px 11px}
+  .plan-steps {gap:5px}
+  .plan-step {font-size:11px;padding:6px 7px}
+  .plan-step.active {padding:5px 6px}
+  .activity-tools {gap:8px}
+  .sound-toggle {font-size:11px;padding:6px 9px}
+  .round-count {font-size:11px}
+}
+
+/* Voluntary skipping is calm and distinct from checking an answer. */
+.skip-button {border:1px solid #edcae0;border-radius:999px;background:#fcecf6;color:#8c3d70;font-size:12px;font-weight:850;padding:8px 13px;min-height:35px}
+.skip-button:hover {background:#f7ddec}
+.pink-finish .continue + .continue {display:block;margin:16px auto 0;background:#fff;color:#854775;border:2px solid #e9c8df;box-shadow:none}
+@media(max-width:680px) {
+  .activity-top {align-items:flex-start;flex-wrap:wrap;gap:4px 10px;margin-bottom:12px}
+  .activity-top .back {flex:0 0 auto}
+  .activity-tools {flex:1 1 220px;flex-wrap:wrap;justify-content:flex-end;gap:7px}
+  .round-count {flex-basis:100%;text-align:right}
+  .skip-button {font-size:11px;padding:7px 10px}
+  .section-heading {flex-wrap:wrap}
+  .section-heading .session-pill {display:inline-flex;white-space:normal}
+}
+
+/* The complete problem is introduced before any intermediate question. */
+.whole-task {text-align:center;background:linear-gradient(145deg,#fff3fa,#f8edf9);border:1px solid #efdaeb;border-radius:19px;padding:17px 14px 12px;margin:0 auto 23px}
+.whole-task-label {display:block;color:#94517c;text-transform:uppercase;letter-spacing:.075em;font-weight:850;font-size:12px;margin-bottom:5px}
+.whole-task-equation {font-size:clamp(33px,5vw,43px);font-weight:900;line-height:1.13;letter-spacing:-.035em;color:#76395f;margin:0 auto 5px;font-variant-numeric:tabular-nums}
+.whole-task p {font-size:13px;color:#79647b;font-weight:700;margin:0}
+.whole-task + .step-badge {margin-bottom:11px}
+.updated-task h3.main-question {font-size:clamp(26px,4vw,36px)}
+.updated-task .feedback:not(.success) {background:#fff5e7;border:1px solid #f2ddbd;border-radius:14px;max-width:420px;padding:9px 12px;margin:5px auto 14px}
+@media(max-width:680px) {
+  .whole-task {padding:14px 9px 10px;margin-bottom:19px}
+  .whole-task-equation {font-size:34px}
+  .updated-task h3.main-question {font-size:clamp(25px,6.8vw,31px)}
+}
+
+/* The concrete example now leads the question. Keep it compact and visual. */
+.story-at-top {margin:-3px auto 18px;padding:12px 15px 14px}
+.story-at-top p {font-size:16px;margin-bottom:9px;line-height:1.35}
+.story-at-top p.story-question {font-size:19px;font-weight:850;line-height:1.3;color:#813c68;margin-bottom:12px}
+.story-at-top .story-heading {margin-bottom:5px}
+.story-at-top .pile {min-height:64px}
+.updated-task .whole-task {margin-bottom:14px;padding:12px 12px 9px}
+.updated-task .whole-task-equation {font-size:clamp(30px,4.5vw,39px)}
+.updated-task .step-detail {font-size:14px;margin-bottom:14px;line-height:1.35}
+.updated-task .question-clarifier {margin-bottom:7px}
+.updated-task .plan-panel {margin-top:18px;padding:12px}
+.updated-task .plan-panel > strong {margin-bottom:10px}
+
+/* Progress belongs to the individual calculation steps, not the three tasks of a round. */
+.step-tracker {max-width:550px;margin:10px auto 20px}
+.step-tracker-title {display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;color:#82446e;font-size:14px;font-weight:800}
+.step-tracker-title span {font-size:13px;color:#976985}
+.step-tracker .progress-track {margin:0 auto}
+.step-tracker .progress-cell {height:10px;background:#ebdde7}
+.step-tracker .progress-cell.current {background:#db83b0}
+.step-tracker .progress-cell.done {background:#8dca9a}
+
+/* A legible, notebook-like solution appears only after finishing the whole task. */
+.working-summary {margin:18px auto 22px;padding:19px 17px;border:2px solid #b6dfbf;border-radius:18px;background:#f2fbf4;text-align:center}
+.working-summary h3 {font-size:23px;color:#39774c;margin:0 0 5px}
+.working-summary > p {color:#567663;font-size:13px;margin:0 auto 13px;line-height:1.4}
+.working-lines {max-width:430px;margin:auto;background:#fff;padding:14px 16px;border:1px solid #cce5d1;border-radius:14px;display:flex;flex-direction:column;gap:9px;font-variant-numeric:tabular-nums}
+.working-task {font-size:24px;color:#693b61;padding:0 0 9px;border-bottom:1px solid #e5e6dd}
+.working-line {display:grid;grid-template-columns:30px 1fr;gap:10px;text-align:left;font-size:19px;line-height:1.35;font-weight:750;color:#4b4a51}
+.working-number {text-align:right;font-size:13px;color:#8c8e8d;font-weight:850;padding-top:5px}
+.working-answer {display:block;margin-top:4px;padding:11px 5px 0;border-top:1px solid #e5e6dd;color:#36804d;font-size:23px}
+
+.lego-brick {display:inline-block;position:relative;vertical-align:middle;width:51px;height:34px;margin:3px 2px 5px;border-radius:5px;background:#ef5d6b;box-shadow:inset 0 -5px 0 #c83d56,0 3px 0 #a92f49;flex:none}
+.lego-brick:before {content:"";position:absolute;inset:5px 5px 8px;border-radius:3px;background-image:radial-gradient(circle at center,#ffd1d5 0 4px,#d3445b 4.5px 6.5px,transparent 7px);background-size:14px 15px}
+.mode-icon .lego-brick {transform:scale(.66);margin:0}
+
+/* Shuffleable paper cards. Footprints follow the mouse, never sit on a card. */
+.hop-board {max-width:690px;margin:0 auto 18px;padding:13px 15px 16px;border-radius:19px;background:#f7ecfb;border:1px solid #ead8f0;text-align:center}
+.hop-board > strong {display:block;color:#7f487e;font-size:15px;margin-bottom:11px}
+@media (pointer:fine) {
+  .hop-board,.hop-board * {cursor:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2248%22%20height%3D%2248%22%20viewBox%3D%220%200%2048%2048%22%3E%0A%20%20%3Cg%20fill%3D%22%23a44684%22%20stroke%3D%22%23fff8ff%22%20stroke-width%3D%221.5%22%3E%0A%20%20%20%20%3Cg%20transform%3D%22rotate(-20%2014%2029)%22%3E%0A%20%20%20%20%20%20%3Cellipse%20cx%3D%2214%22%20cy%3D%2229%22%20rx%3D%226%22%20ry%3D%2210%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%227%22%20cy%3D%2218%22%20r%3D%222.7%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%2213%22%20cy%3D%2215%22%20r%3D%223%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%2219%22%20cy%3D%2217%22%20r%3D%222.5%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Cg%20transform%3D%22rotate(18%2033%2019)%22%3E%0A%20%20%20%20%20%20%3Cellipse%20cx%3D%2233%22%20cy%3D%2223%22%20rx%3D%226%22%20ry%3D%2210%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%2226%22%20cy%3D%2212%22%20r%3D%222.7%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%2232%22%20cy%3D%229%22%20r%3D%223%22%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%2238%22%20cy%3D%2211%22%20r%3D%222.5%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E%0A') 24 24,pointer !important}
+}
+.hop-grid {display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.hop-tile {display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:78px;padding:8px 3px;border-radius:5px;border:1px solid #e1d9d1;background:#fffefa;color:#634c66;font-family:'Comic Sans MS','Segoe Print','Trebuchet MS',cursive;font-size:22px;font-weight:800;box-shadow:2px 3px 0 #e8dfdf,0 5px 8px #73516d16;transform:rotate(-1.5deg);transition:transform .16s ease,background-color .16s ease;touch-action:manipulation}
+.hop-tile:nth-child(even) {transform:rotate(1.5deg)}
+.hop-tile small {font-size:17px;line-height:1;min-height:17px}
+.hop-tile.selected {background:#fff0f6;border:2px solid #bc70a2;color:#7a2d60;transform:rotate(0) translateY(-3px);box-shadow:0 4px 0 #e7c0d9,0 6px 12px #73516d18}
+.hop-tile.completed {background:#e8f6eb;color:#397957;border-color:#a0d6b1;box-shadow:1px 2px 0 #c2d8c6;opacity:1}
+.hop-tile:focus-visible {outline:3px solid #8257a7;outline-offset:3px}
+.card-current-label {text-align:center;color:#7f487e;font-size:15px;font-weight:800;margin-bottom:8px}
+
+/* Gentle rescue path, available without an external service or account. */
+.rescue-button {display:block;width:100%;border:2px solid #f2bccd;background:#fff1f4;color:#964c68;font-weight:850;font-size:15px;padding:12px;border-radius:16px;margin:10px auto}
+.rescue-panel {border:2px solid #f3c8d6;background:#fffbfc;padding:17px 18px;margin:13px 0;border-radius:19px;line-height:1.5}
+.rescue-panel h4 {font-size:20px;color:#85436c;margin:0 0 7px}
+.rescue-panel p {color:#654e61;font-size:14px;margin:5px 0 12px}
+.rescue-stage {display:inline-block;margin:2px 0 8px;color:#8a5e76;font-size:12px;font-weight:800;letter-spacing:.03em;text-transform:uppercase}
+.rescue-panel .rescue-story {background:#fff2df;padding:12px 13px;border-radius:12px;font-size:16px;line-height:1.55;color:#604936}
+.rescue-panel .rescue-reminder {font-size:12px;color:#806c7c;margin:10px 0 0}
+.hint-followup {font-size:13px;color:#744b70;background:#f8eff8;border-radius:12px;padding:10px 12px}
+.rescue-clue {background:#fff3df;border-radius:12px;padding:10px 12px;margin:8px 0;color:#70542c;font-size:14px}
+.rescue-next {width:100%;border:0;border-radius:12px;background:#ba689b;color:#fff;padding:12px 8px;font-size:14px;font-weight:850}
+.adult-help {border-top:1px dashed #e3c6da;margin-top:16px;padding-top:13px}
+.adult-help strong {color:#7e5a74;font-size:13px}
+.adult-help summary {cursor:pointer;color:#87506f;font-size:13px;font-weight:800;margin-bottom:9px}
+.adult-help p {font-size:13px;margin:4px 0 10px}
+.adult-help button {border:1px solid #dfc4d6;background:#fff;color:#87506f;border-radius:12px;padding:10px 12px;font-weight:800;font-size:13px}
+.adult-help textarea {width:100%;border:1px solid #e6d5e0;border-radius:10px;padding:10px;margin-top:8px;font:13px/1.5 inherit;color:#5f5061;resize:vertical}
+.adult-help .copy-state {color:#317555;font-weight:800}
+@media(max-width:680px) {
+  .story-at-top {padding:11px 9px 12px}
+  .story-at-top p {font-size:14px}
+  .story-at-top p.story-question {font-size:17px}
+  .story-at-top .pile {min-width:85px}
+  .recipient-emoji {font-size:23px}
+  .step-tracker-title {font-size:13px}
+  .step-tracker-title span {font-size:12px}
+  .working-summary {padding:15px 10px}
+  .working-lines {padding:12px 10px}
+  .working-line {font-size:17px;gap:7px}
+  .working-answer {font-size:20px}
+  .hop-board {padding:11px 9px 12px}
+  .hop-grid {gap:5px}
+  .hop-tile {min-height:62px;font-size:16px;padding:6px 1px;border-radius:4px}
+  .hop-tile small {font-size:14px;min-height:14px}
+  .rescue-panel {padding:13px 12px}
+}
+
+/* Version 18: the child chooses mathematically useful calculation paths. */
+.freeway-heading {font-size:clamp(22px,4vw,30px);text-align:center;color:#783b65;margin:15px auto 9px;line-height:1.25}
+.freeway-intro {text-align:center;font-size:14px;line-height:1.45;color:#79647b;margin:0 auto 16px;max-width:470px}
+.freeway-expression {text-align:center;font-weight:900;font-size:clamp(24px,4vw,34px);letter-spacing:-.02em;color:#6d4664;margin:5px auto 15px}
+.freeway-expression strong {color:#a14b83}
+.freeway-choice {display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;background:#fff6fc;border:1px solid #efdae9;border-radius:16px;padding:12px;margin:10px auto 15px;max-width:410px}
+.freeway-choice .answer-screen {height:60px;min-width:123px;padding:8px 16px;font-size:30px;letter-spacing:.04em}
+.freeway-choice .operator {font-weight:900;font-size:27px;color:#8a4d78}
+.freeway-choice .answer-label {flex-basis:100%;text-align:center;margin-bottom:0}
+.freeway-notebook {padding:15px 16px;border:1px solid #e3d8e9;background:#f9f3fb;border-radius:17px;margin:0 auto 19px;max-width:500px}
+.freeway-notebook h3 {font-size:16px;color:#784772;margin:0 0 8px}
+.freeway-notebook ol {padding-left:27px;margin:0;display:grid;gap:7px;color:#4e4b55;font-weight:700;font-size:16px;line-height:1.4}
+.freeway-notebook p {font-size:13px;color:#7f7282;margin:0}
+.freeway-remaining {font-weight:800;color:#7e4b75;font-size:13px;margin-top:11px}
+.freeway-actions {display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:10px 0 12px}
+.freeway-switch {border:1px solid #d6aed0;border-radius:13px;background:#fff8fc;padding:11px 14px;font-weight:800;font-size:13px;color:#88466f}
+.freeway-meaning {width:100%;display:block;border:2px solid #e1c1d9;border-radius:16px;background:#fff8fc;color:#704262;text-align:left;padding:14px 16px;margin:11px 0;font-size:15px;font-weight:800;line-height:1.5}
+.freeway-meaning small {display:block;font-size:12px;font-weight:650;color:#80677d;margin-top:4px}
+.freeway-help {font-size:12px;text-align:center;color:#806e7d;margin:2px auto 11px}
+.freeway-result {background:#ecf9ee;border:2px solid #a8d6b4;border-radius:18px;padding:18px 16px;margin:15px auto;text-align:center}
+.freeway-result strong {display:block;font-size:25px;color:#2b7747;margin:7px 0}
+.freeway-result p {font-size:14px;color:#52745b;margin:6px 0}
+@media(max-width:680px) {
+  .freeway-choice {padding:9px 7px}
+  .freeway-choice .answer-screen {height:58px;font-size:29px;min-width:112px}
+  .freeway-notebook {padding:13px 12px}
+}
+
+</style>
+    <script>
+/* Rosalies Zahlenland: Denken, Ausprobieren, Entdecken – ohne Werbung oder Konten. */
+function initZahlenland() {
+  'use strict';
+
+  const DIV = [
+    [470,5,'🧱','Rosalie hat insgesamt 470 LEGO-Steine. Sie verteilt sie gleichmäßig an 5 Kinder. Wie viele Steine bekommt jedes Kind?','Kinder'],
+    [336,6,'⭐','Rosalie hat insgesamt 336 Stern-Sticker für ihre Feier. Sie verteilt sie gleichmäßig an 6 Geburtstagsgäste. Wie viele Sticker bekommt jeder Gast?','Geburtstagsgäste'],
+    [432,8,'🟣','Rosalie hat insgesamt 432 bunte Perlen. Sie füllt damit 8 Dosen gleich voll. Wie viele Perlen kommen in jede Dose?','Dosen'],
+    [616,7,'🧱','Für 7 Baukästen hat Rosalie insgesamt 616 LEGO-Steine. Jeder Kasten soll gleich viele bekommen. Wie viele Steine kommen in einen Kasten?','Baukästen'],
+    [522,9,'💗','Rosalie hat insgesamt 522 Papierherzen gebastelt. Sie packt sie gleichmäßig in 9 Geschenktüten. Wie viele Herzen kommen in jede Tüte?','Geschenktüten'],
+    [273,3,'🍬','Rosalie hat insgesamt 273 Bonbons für eine Feier. Sie füllt 3 Geburtstagstüten gleich voll. Wie viele Bonbons kommen in jede Tüte?','Geburtstagstüten'],
+    [468,6,'🌟','Rosalie hat insgesamt 468 Glitzersterne zum Basteln. Sie verteilt sie gleichmäßig an 6 Bastelgruppen. Wie viele Sterne bekommt jede Gruppe?','Bastelgruppen'],
+    [252,4,'🍓','Rosalie hat 252 Erdbeeren gepflückt. Sie verteilt sie gleichmäßig auf 4 Picknickkörbe. Wie viele Erdbeeren kommen in einen Korb?','Picknickkörbe'],
+    [680,8,'🧩','Rosalie hat 8 kleine Puzzles mit gleich vielen Teilen. Zusammen haben die Puzzles 680 Teile. Wie viele Teile hat ein einzelnes Puzzle?','Puzzles'],
+    [492,6,'🧱','Rosalie räumt insgesamt 492 Bauklötze auf. Sie verteilt sie gleichmäßig in 6 Kisten. Wie viele Bauklötze kommen in jede Kiste?','Kisten'],
+    [546,7,'✨','Rosalie hat insgesamt 546 Glitzersteine für einen Bastelnachmittag. Sie verteilt sie gleichmäßig auf 7 Basteltische. Wie viele liegen auf jedem Tisch?','Basteltische'],
+    [304,4,'🎈','Für 4 Schulfeste wurden insgesamt 304 Luftballons gekauft. Jedes Fest bekommt gleich viele. Wie viele Ballons bekommt ein Fest?','Schulfeste'],
+    [375,5,'🎂','Rosalie verziert 5 große Kuchen mit insgesamt 375 kleinen Zuckerherzen. Auf jeden Kuchen kommen gleich viele. Wie viele Zuckerherzen sind es pro Kuchen?','Kuchen'],
+    [392,7,'🌼','Rosalie hat insgesamt 392 Blumen-Sticker. Sie verteilt sie gleichmäßig an 7 Freundinnen. Wie viele Sticker bekommt jede Freundin?','Freundinnen'],
+    [648,9,'🍪','In der Schulküche werden 648 Kekse gebacken. Sie werden gleichmäßig auf 9 große Tabletts gelegt. Wie viele Kekse liegen auf einem Tablett?','Tabletts']
+  ].map(([n,d,icon,story,recipient]) => ({n,d,icon,story,recipient}));
+
+  const MUL = [
+    [25,13,'🪙','Rosalie hat 13 Münzen. Jede ist 25 Cent wert. Wie viele Cent hat sie zusammen?','Münzen'],
+    [15,12,'🍪','Für ein Schulfest gibt es auf 12 Backblechen jeweils 15 Kekse. Wie viele Kekse sind das insgesamt?','Backblechen'],
+    [24,13,'💗','Rosalie sammelt 13 Stickerbögen mit je 24 Herzchen. Wie viele Herzchen hat sie insgesamt?','Stickerbögen'],
+    [23,14,'🌈','Rosalie sammelt 14 Stickerbögen. Auf jedem kleben 23 bunte Sticker. Wie viele Sticker sind das zusammen?','Stickerbögen'],
+    [32,12,'🧱','Rosalie baut eine riesige LEGO-Stadt. In 12 LEGO-Kisten liegen jeweils 32 Steine. Wie viele Steine hat sie insgesamt?','LEGO-Kisten'],
+    [18,16,'🎂','Für ein Schulfest werden 16 Schachteln mit je 18 Muffins gepackt. Wie viele Muffins sind das insgesamt?','Schachteln'],
+    [36,15,'🌟','Für ein Kunstprojekt gibt es 15 Bastelkisten mit je 36 Sternen. Wie viele Sterne sind das zusammen?','Bastelkisten'],
+    [45,12,'🍬','Rosalie packt Bonbons für einen Verkaufsstand. Sie füllt 12 Tüten mit je 45 Bonbons. Wie viele Bonbons sind das insgesamt?','Tüten'],
+    [26,18,'🟣','Für einen Bastelnachmittag gibt es 18 Perlenkästen mit je 26 Perlen. Wie viele Perlen sind das zusammen?','Perlenkästen'],
+    [42,13,'🧩','In einem Spieleladen stehen 13 Puzzle-Schachteln mit je 42 Teilen. Wie viele Puzzleteile sind in allen Schachteln zusammen?','Schachteln'],
+    [14,17,'🎀','Rosalie hat 17 Geschenktüten mit je 14 Schleifen darin. Wie viele Schleifen sind es zusammen?','Geschenktüten'],
+    [35,14,'⭐','Rosalie hat 14 Stickerbögen mit je 35 Stern-Stickern. Wie viele Sticker sind das insgesamt?','Stickerbögen'],
+    [28,15,'🍓','Beim Erdbeerpflücken werden 15 Körbchen mit je 28 Erdbeeren gefüllt. Wie viele Erdbeeren sind das zusammen?','Körbchen'],
+    [16,19,'🦋','Rosalie sortiert Schmetterling-Sticker. Sie füllt 19 Schachteln mit je 16 Stickern. Wie viele Sticker sind das insgesamt?','Schachteln']
+  ].map(([a,b,icon,story,recipient]) => ({a,b,icon,story,recipient}));
+
+  const app = document.getElementById('app');
+  const state = {
+    screen:'home', mode:null, examples:[], current:0, steps:[], step:0,
+    entry:'', hintLevel:0, magicOpen:false, solved:false, assisted:false,
+    feedback:'', errors:0, row:5, celebration:0, soundEnabled:true,
+    progress:loadProgress(), recent:loadRecent(), sessionStats:{done:0,skipped:0},
+    tabDone:[], rescueOpen:false, rescueLevel:0, division:null, multiplication:null
+  };
+  let audioContext=null;
+
+  function playSound(kind) {
+    if(!state.soundEnabled)return;
+    try {
+      const Audio=window.AudioContext||window.webkitAudioContext;
+      if(!Audio)return;
+      if(!audioContext)audioContext=new Audio();
+      if(audioContext.state==='suspended')audioContext.resume();
+      const now=audioContext.currentTime;
+      const notes=kind==='success'?[{hz:659,at:0},{hz:880,at:.13}]:kind==='retry'?[{hz:330,at:0}]:[{hz:523,at:0}];
+      for(const note of notes){
+        const oscillator=audioContext.createOscillator();
+        const volume=audioContext.createGain();
+        oscillator.type='sine';oscillator.frequency.value=note.hz;
+        volume.gain.setValueAtTime(.0001,now+note.at);
+        volume.gain.linearRampToValueAtTime(.075,now+note.at+.015);
+        volume.gain.exponentialRampToValueAtTime(.0001,now+note.at+.20);
+        oscillator.connect(volume);volume.connect(audioContext.destination);
+        oscillator.start(now+note.at);oscillator.stop(now+note.at+.21);
+      }
+    }catch(_) { /* If the browser has no sound support, the game still works. */ }
+  }
+
+  function loadProgress() {
+    try {
+      const data=JSON.parse(localStorage.getItem('rosalie-mathe-progress-v1'));
+      if(data && typeof data==='object') return {
+        div:Number(data.div)||0,mul:Number(data.mul)||0,tab:Number(data.tab)||0,
+        skipped:{div:0,mul:0,tab:0,...(data.skipped||{})}
+      };
+    } catch(_) { /* Memory may be unavailable. */ }
+    return {div:0,mul:0,tab:0,skipped:{div:0,mul:0,tab:0}};
+  }
+  function saveProgress() {
+    try { localStorage.setItem('rosalie-mathe-progress-v1',JSON.stringify(state.progress)); }
+    catch(_) { /* Play remains possible. */ }
+  }
+  function shuffle(items) {
+    const a=items.slice();
+    for(let i=a.length-1;i>0;i--) { const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]; }
+    return a;
+  }
+  function randomInt(low,high) {return low+Math.floor(Math.random()*(high-low+1));}
+  function loadRecent() {
+    try {
+      const data=JSON.parse(localStorage.getItem('rosalie-mathe-recent-v1'));
+      if(data && typeof data==='object')return {div:Array.isArray(data.div)?data.div:[],mul:Array.isArray(data.mul)?data.mul:[]};
+    }catch(_) { /* All tasks still work without browser storage. */ }
+    return {div:[],mul:[]};
+  }
+  function exampleKey(mode,p) {return mode==='div'?`${p.n}:${p.d}`:`${p.a}x${p.b}`;}
+  function withNewNumbers(story,firstOld,secondOld,firstNew,secondNew) {
+    return story.replace(new RegExp(`\\b${firstOld}\\b`,'g'),'{FIRST}')
+      .replace(new RegExp(`\\b${secondOld}\\b`,'g'),'{SECOND}')
+      .replaceAll('{FIRST}',String(firstNew)).replaceAll('{SECOND}',String(secondNew));
+  }
+  function generateCandidate(mode) {
+    if(mode==='div') {
+      const theme=DIV[randomInt(0,DIV.length-1)];
+      const d=randomInt(3,9),q=randomInt(4,9)*10+randomInt(1,9),n=d*q;
+      return {n,d,icon:theme.icon,recipient:theme.recipient,story:withNewNumbers(theme.story,theme.n,theme.d,n,d)};
+    }
+    const theme=MUL[randomInt(0,MUL.length-1)];
+    const a=theme.icon==='🪙'?25:randomInt(12,48),b=randomInt(11,19);
+    return {a,b,icon:theme.icon,recipient:theme.recipient,story:withNewNumbers(theme.story,theme.a,theme.b,a,b)};
+  }
+  function freshExample(mode,exclude=[]) {
+    if(mode==='tab') {
+      const used=new Set(exclude.map(p=>p.b));
+      const choices=shuffle(Array.from({length:10},(_,i)=>i+1));
+      return {a:state.row,b:choices.find(n=>!used.has(n))||choices[0]};
+    }
+    const seen=new Set(state.recent[mode]);
+    const blocked=new Set(exclude.map(p=>exampleKey(mode,p)));
+    let candidate;
+    for(let i=0;i<300;i++) {
+      candidate=generateCandidate(mode);
+      const key=exampleKey(mode,candidate);
+      if(!blocked.has(key)&&!seen.has(key))break;
+    }
+    // With an exhausted history, keep the current session distinct.
+    for(let i=0;i<300&&blocked.has(exampleKey(mode,candidate));i++)candidate=generateCandidate(mode);
+    state.recent[mode]=[...state.recent[mode],exampleKey(mode,candidate)].slice(-35);
+    try{localStorage.setItem('rosalie-mathe-recent-v1',JSON.stringify(state.recent));}catch(_){}
+    return candidate;
+  }
+
+  function mathText() {
+    const p=state.examples[state.current];
+    if(!p) return '';
+    return state.mode==='div' ? `${p.n} : ${p.d}` : `${p.a} × ${p.b}`;
+  }
+
+  function magicFor(mode,p) {
+    if(mode==='div') {
+      const target=Math.floor(p.n/10),factor=Math.floor((p.n/p.d)/10),small=p.d*factor;
+      return {title:'Großen Teil und kleinen Rest teilen',lines:[
+        `Bei ${p.n} : ${p.d} schauen wir zuerst auf ${target}.`,
+        `Suche die größte Zahl aus der ${p.d}er-Reihe, die nicht größer als ${target} ist. Das ist ${small}.`,
+        `Aus ${small} wird durch × 10 die Zahl ${small*10}.`,
+        `Rechne ${p.n} − ${small*10}. Das ist der Rest.`,
+        `Teile ${small*10} und den Rest jeweils durch ${p.d}.`,
+        'Addiere die beiden Ergebnisse. Das ist die Lösung der ganzen Aufgabe.'
+      ]};
+    }
+    if(mode==='mul') {
+      return {title:'Eine große Malaufgabe in zwei kleine teilen',lines:[
+        `Zerlege ${p.b} in 10 + ${p.b-10}.`,
+        `Rechne ${p.a} × 10.`,
+        `Rechne ${p.a} × ${p.b-10}.`,
+        'Addiere die beiden Ergebnisse. So bekommst du das Ergebnis der ganzen Aufgabe.'
+      ]};
+    }
+    const a=p.a,b=p.b;
+    if((a===7&&b===8)||(a===8&&b===7)) return {title:'Der 5-6-7-8-Zauber',text:'7 × 8 = 56. Die vier Ziffern laufen der Reihe nach: 5 – 6 – 7 – 8. Dieses Bild kannst du dir merken!'};
+    if(a===9||b===9) return {title:'Der Neuner-Trick',text:'Bei 9 × 7 ist das Ergebnis 63. Die Ziffern 6 und 3 ergeben zusammen 9. Bei der 9er-Reihe von 9 × 1 bis 9 × 10 klappt das immer.' };
+    if(a===5||b===5) return {title:'Der Fünfer-Zauber',text:'Mal 5? Rechne mal 10. Dann nimm die Hälfte.'};
+    if(a===4||b===4) return {title:'Doppelt doppelt!',text:'Verdopple die Zahl. Verdopple das Ergebnis noch einmal.'};
+    if(a===8||b===8) return {title:'Dreimal verdoppeln',text:'Verdopple die Zahl dreimal. Das ist mal 8.'};
+    if(a===6||b===6) return {title:'Fünf plus eins',text:'Rechne zuerst mal 5. Addiere dann die Zahl einmal dazu. So hast du mal 6 gerechnet.'};
+    if(a===11&&b<10) return {title:'Die Zwillingszahl',text:'11 × 3 = 33. Die 3 steht zweimal da!'};
+    return {title:'Der Tausch-Zauber',text:`${a} × ${b} ist genauso viel wie ${b} × ${a}. Nimm die einfachere Reihenfolge.`};
+  }
+
+  function getSteps(mode,p) {
+    if(mode==='div') {
+      const q=p.n/p.d, factor=Math.floor(q/10),target=Math.floor(p.n/10);
+      const smallProduct=p.d*factor,big=smallProduct*10,rest=p.n-big,large=big/p.d,small=rest/p.d;
+      return [
+        {question:`Welche Zahl der ${p.d}er-Reihe ist die größte, die nicht über ${target} liegt?`,
+          detail:`${target} ist die Grenze. Deine Zahl darf nicht größer als ${target} sein.`,answer:smallProduct,
+          hints:[`Schreibe die ${p.d}er-Reihe auf: ${p.d}, ${p.d*2}, ${p.d*3} und so weiter. Stoppe, bevor du über ${target} kommst.`,
+            `${p.d} × ${factor+1} = ${p.d*(factor+1)} liegt über ${target}. Nimm das Ergebnis der Malaufgabe davor.`],
+          solvedLine:`${p.d} × ${factor} = ${smallProduct}`},
+        {question:`Was ist ${smallProduct} × 10?`,
+          detail:'',answer:big,
+          hints:[`Wenn du ${smallProduct} Zehner hast, wie viele Einer sind das? Denke an 3 Zehner = 30 Einer.`,
+            `Bei einer ganzen Zahl bedeutet × 10: Schreibe an ${smallProduct} hinten eine 0.`],
+          solvedLine:`${smallProduct} × 10 = ${big}`},
+        {question:`Was ist ${p.n} − ${big}?`,detail:'',answer:rest,
+          hints:[`Stell dir vor, du hast ${big} Euro gespart und möchtest ${p.n} Euro haben. Wie viele Euro fehlen dir noch?`,
+            `Gehe auf dem Zahlenstrahl von ${big} bis ${p.n}. Wie groß ist der Abstand zwischen den beiden Zahlen?`],solvedLine:`${p.n} − ${big} = ${rest}`},
+        {question:`Was ist ${big} : ${p.d}?`,detail:'',answer:large,
+          hints:[`Bei ${smallProduct} : ${p.d} erhältst du ${factor}. Was passiert mit dem Ergebnis, wenn du statt ${smallProduct} die zehnmal so große Zahl ${big} teilst?`,
+            `Aus ${p.d} × ${factor} = ${smallProduct} wird ${p.d} × (${factor} × 10) = ${big}. Welche Zahl steht in der Klammer?`],solvedLine:`${big} : ${p.d} = ${large}`},
+        {question:`Was ist ${rest} : ${p.d}?`,detail:'',answer:small,
+          hints:[`Du verteilst ${rest} Bonbons gleichmäßig an ${p.d} Kinder. Wie viele Bonbons bekommt jedes Kind?`,
+            `Suche die Malaufgabe ${p.d} × ? = ${rest}. Das Fragezeichen ist die gesuchte Zahl.`],solvedLine:`${rest} : ${p.d} = ${small}`},
+        {question:`Was ist ${large} + ${small}?`,detail:'',answer:q,
+          hints:[`In einer Dose sind ${large} Perlen, in einer zweiten ${small}. Wie viele Perlen sind es zusammen?`,
+            `Addiere erst die Zehner von ${large} und ${small}, danach die Einer.`],solvedLine:`${p.n} : ${p.d} = ${large} + ${small} = ${q}`}
+      ];
+    }
+    if(mode==='mul') {
+      const {a,b}=p, o=b-10, large=a*10, small=a*o;
+      const digit=Math.floor(a/10),ten=digit*10,one=a-ten,base=digit*o,tensPart=base*10,onesPart=one*o;
+      return [
+        {question:`Was ist ${a} × 10?`,detail:`Wir zerlegen ${b} in 10 + ${o}. Zuerst rechnen wir ${a} × 10.`,answer:large,
+          hints:[`Stell dir 10 Schachteln mit je ${a} Stickern vor. Wie viele Sticker sind das insgesamt?`,
+            `Bei ganzen Zahlen bedeutet × 10: Schreibe an ${a} hinten eine 0.`],solvedLine:`${a} × 10 = ${large}`},
+        {question:`Was ist ${digit} × ${o}?`,detail:`Die ${digit} in ${a} steht für ${ten}.`,answer:base,
+          hints:[`Auf ${o} Tellern liegen jeweils ${digit} Kekse. Wie viele Kekse liegen auf allen Tellern zusammen?`,
+            `Rechne ${Array.from({length:o},()=>digit).join(' + ')}.`],solvedLine:`${digit} × ${o} = ${base}`},
+        {question:`Was ist ${base} × 10?`,detail:'',answer:tensPart,
+          hints:[`Du hast ${base} Zehnerpäckchen. Wie viele einzelne Dinge sind das?`,
+            `Schreibe ${base} und direkt dahinter eine 0.`],solvedLine:`${ten} × ${o} = ${tensPart}`},
+        {question:`Was ist ${one} × ${o}?`,detail:'',answer:onesPart,
+          hints:[`In ${o} kleinen Tüten liegen jeweils ${one} Murmeln. Wie viele Murmeln sind das zusammen?`,
+            `Rechne ${Array.from({length:o},()=>one).join(' + ')}.`],solvedLine:`${one} × ${o} = ${onesPart}`},
+        {question:`Was ist ${tensPart} + ${onesPart}?`,detail:'',answer:small,
+          hints:[`In zwei Körben liegen ${tensPart} und ${onesPart} Äpfel. Wie viele Äpfel sind es zusammen?`,
+            `Schreibe ${tensPart} und ${onesPart} untereinander. Addiere zuerst die Einer, dann die Zehner und Hunderter.`],solvedLine:`${a} × ${o} = ${small}`},
+        {question:`Was ist ${large} + ${small}?`,detail:'',answer:a*b,
+          hints:[`Du hast ${large} Sticker und bekommst ${small} dazu. Wie viele Sticker hast du insgesamt?`,
+            `Schreibe ${large} und ${small} untereinander. Addiere die Einer, dann die Zehner und Hunderter.`],solvedLine:`${a} × ${b} = ${large} + ${small} = ${a*b}`}
+      ];
+    }
+    const {a,b}=p;
+    return [{question:`Was ist ${b} × ${a}?`,detail:'',answer:a*b,
+      hints:[`Rechne ${Array.from({length:b},()=>a).join(' + ')}. Das bedeutet ${b} × ${a}.`,
+        `Stell dir ${b} Teller mit jeweils ${a} Keksen vor. Wie viele Kekse liegen auf allen Tellern zusammen?`],
+      solvedLine:`${b} × ${a} = ${a*b}`}];
+  }
+
+  function learningPlan(mode,p) {
+    if(mode==='div'){
+      return {
+        lead:'Mach zwei Rechnungen draus!',
+        labels:['Passende Zahl finden','Zehnmal so groß','Rest ausrechnen','Großen Teil teilen','Rest teilen','Ergebnisse addieren']
+      };
+    }
+    if(mode==='mul')return {
+      lead:'Mach zwei Rechnungen draus!',
+      labels:['Mal 10','Kleine Malaufgabe','Zehnmal so groß','Noch eine Malaufgabe','Teile addieren','Alles addieren']
+    };
+    return {lead:`Wähle eine Einmaleins-Karte. Rechne die Aufgabe darauf aus.`,labels:['Einmaleins rechnen']};
+  }
+
+  function storyMarkup(story) {
+    const parts=story.match(/^(.*[.!])\s+((?:Wie|Was|Welche)[^?]*\?)$/);
+    if(!parts)return `<p>${story}</p>`;
+    return `<p>${parts[1]}</p><p class="story-question">${parts[2]}</p>`;
+  }
+
+  function selectExamples(mode) {
+    if(mode==='div'||mode==='mul') {
+      const examples=[];
+      for(let i=0;i<3;i++)examples.push(freshExample(mode,examples));
+      return examples;
+    }
+    return shuffle(Array.from({length:10},(_,i)=>({a:state.row,b:i+1})));
+  }
+
+  function resetStep() {
+    state.entry='';state.hintLevel=0;state.magicOpen=false;state.solved=false;
+    state.assisted=false;state.feedback='';state.errors=0;
+    state.rescueOpen=false;state.rescueLevel=0;
+  }
+  function start(mode) {
+    state.mode=mode;state.screen='play';state.examples=selectExamples(mode);state.current=0;
+    state.sessionStats={done:0,skipped:0};state.tabDone=[];
+    newExample();render();window.scrollTo({top:0,behavior:'instant'});
+  }
+  function newExample() {
+    state.steps=state.mode==='mul'?[]:getSteps(state.mode,state.examples[state.current]);state.step=0;resetStep();
+    const p=state.examples[state.current];
+    state.division=state.mode==='div'?{
+      phase:'choose',strategy:'chunks',remaining:p.n,picked:0,parts:[],
+      prefix:Math.floor(p.n/10),firstDigit:null,firstRest:null,chunkQuotient:null,
+      firstProduct:null,scaledProduct:null,nextValue:null,lastDigit:null,usedHelp:false
+    }:null;
+    state.multiplication=state.mode==='mul'?{
+      root:makeMulNode(p.a,p.b),usedHelp:false
+    }:null;
+  }
+  function home() {state.mode=null;state.screen='home';render();window.scrollTo({top:0,behavior:'instant'});}
+  function addDigit(s) {
+    if(state.solved||state.screen!=='play'||state.entry.length>=5)return;
+    if(s==='0'&&state.entry==='0')return;
+    state.entry=(state.entry==='0' ? '' : state.entry)+s;
+    state.feedback='';render();
+  }
+  function erase() {
+    if(state.solved||state.screen!=='play')return;
+    state.entry=state.entry.slice(0,-1);state.feedback='';render();
+  }
+  function awardTab() {
+    if(state.mode!=='tab'||state.tabDone.includes(state.current))return;
+    state.tabDone.push(state.current);state.progress.tab=(state.progress.tab||0)+1;
+    state.sessionStats.done++;saveProgress();
+  }
+  function check() {
+    if(state.solved||state.screen!=='play')return;
+    if(state.entry===''){state.feedback='Tippe eine Zahl ein. 🌷';render();return;}
+    if(state.mode==='div')return checkDivision();
+    if(state.mode==='mul')return checkMultiplication();
+    const guess=Number(state.entry), step=state.steps[state.step];
+    if(guess===step.answer) {
+      state.solved=true;state.assisted=false;state.celebration++;
+      state.feedback='Richtig! 💗';
+      awardTab();
+      playSound('success');
+    } else {
+      state.errors++;
+      state.entry='';
+      state.feedback=state.mode==='div'&&state.step===0?`Noch nicht. Gesucht ist die größte Zahl der ${state.examples[state.current].d}er-Reihe, die nicht über ${Math.floor(state.examples[state.current].n/10)} liegt. 🌸`:'Noch nicht. Versuch es noch einmal. 🌸';
+      playSound('retry');
+    }
+    render();
+  }
+  function divisionAdvance(phase,notice='') {
+    state.division.phase=phase;
+    state.entry='';state.feedback=notice;
+    state.hintLevel=0;state.magicOpen=false;
+    state.rescueOpen=false;state.rescueLevel=0;
+    render();
+  }
+  function finishDivision() {
+    const p=state.examples[state.current];
+    state.division.phase='done';state.solved=true;
+    state.entry=String(p.n/p.d);
+    state.feedback=state.division.usedHelp?'Geschafft! Du hast dich Schritt für Schritt vorgearbeitet. 💗':'Richtig! Du hast deinen Rechenweg selbst gefunden. 💗';
+    state.celebration++;playSound('success');render();
+  }
+  function divisionWrong(message) {
+    state.errors++;state.entry='';state.feedback=message||'Das passt noch nicht. Denk noch einmal nach. 🌸';
+    playSound('retry');render();
+  }
+  // Each multiplication is a small calculation tree. Rosalie decides whether
+  // to solve it directly or split a factor into tens and ones. The program
+  // checks her reasoning, but never prescribes the first subproblem.
+  function makeMulNode(a,b) {return {a,b,value:null,phase:'plan',axis:null,children:null};}
+  function currentMulNode() {
+    let node=state.multiplication.root;
+    while(node.children){
+      const unfinished=node.children.find(child=>child.value===null);
+      if(!unfinished)break;
+      node=unfinished;
+    }
+    return node;
+  }
+  function mulCanSplit(n) {return n>=11&&n%10!==0;}
+  function mulAdvance(message='') {
+    state.entry='';state.feedback=message;state.hintLevel=0;state.magicOpen=false;
+    state.rescueOpen=false;state.rescueLevel=0;render();
+  }
+  function mulAction(action) {
+    if(state.mode!=='mul'||state.solved||state.screen!=='play')return;
+    const node=currentMulNode();
+    if(action==='direct'&&node.phase==='plan')node.phase='answer';
+    else if(action==='split'&&node.phase==='plan'&&(mulCanSplit(node.a)||mulCanSplit(node.b)))node.phase='factor';
+    else if(action==='back'&&(node.phase==='factor'||node.phase==='answer'))node.phase='plan';
+    else if(action==='back'&&node.phase==='pick')node.phase='factor';
+    else if(action==='factor-a'&&node.phase==='factor'&&mulCanSplit(node.a)){node.axis='a';node.phase='pick';}
+    else if(action==='factor-b'&&node.phase==='factor'&&mulCanSplit(node.b)){node.axis='b';node.phase='pick';}
+    else return;
+    mulAdvance();
+  }
+  function finishMultiplication() {
+    const p=state.examples[state.current];
+    state.solved=true;state.entry=String(p.a*p.b);
+    state.feedback=state.multiplication.usedHelp?'Geschafft! Du hast die Teilrechnungen verbunden. 💗':'Richtig! Du hast deinen eigenen Rechenweg gefunden. 💗';
+    state.celebration++;playSound('success');render();
+  }
+  function checkMultiplication() {
+    const node=currentMulNode(),value=Number(state.entry);
+    if(!Number.isSafeInteger(value)||value<0)return divisionWrong('Bitte gib eine ganze Zahl ein.');
+    if(node.phase==='pick') {
+      const n=node[node.axis],tens=Math.floor(n/10)*10,ones=n%10;
+      if(value!==tens&&value!==ones)return divisionWrong(`Das wäre ein umständlicher Teil. Suche einen einfachen Weg mit den Zehnern und Einern von ${n}.`);
+      const other=n-value;
+      node.children=node.axis==='a'?[makeMulNode(value,node.b),makeMulNode(other,node.b)]:[makeMulNode(node.a,value),makeMulNode(node.a,other)];
+      node.phase='sum';
+      return mulAdvance(`Du hast ${n} in ${value} und ${other} zerlegt. Jetzt kannst du deine Teilrechnungen lösen. 🌷`);
+    }
+    if(node.phase==='answer') {
+      if(value!==node.a*node.b)return divisionWrong(`Prüfe noch einmal ${node.a} × ${node.b}. Du kannst auch zurückgehen und zerlegen.`);
+      node.value=value;
+    } else if(node.phase==='sum') {
+      const [left,right]=node.children;
+      if(value!==left.value+right.value)return divisionWrong(`Addiere deine beiden Ergebnisse: ${left.value} + ${right.value}.`);
+      node.value=value;
+    } else return;
+    if(state.multiplication.root.value!==null)return finishMultiplication();
+    mulAdvance('Richtig! Jetzt geht es mit deinem selbst gewählten Rechenweg weiter. 💗');
+  }
+  function mulHints() {
+    const node=currentMulNode();
+    if(node.phase==='plan')return [
+      'Du darfst das Ergebnis direkt rechnen oder eine Zahl in einfachere Teile zerlegen.',
+      'Bei zweistelligen Zahlen können die Zehner und die Einer oft helfen.'
+    ];
+    if(node.phase==='factor')return [
+      'Welche der beiden Zahlen lässt sich für dich leichter zerlegen?',
+      'Beispiel: Bei 25 × 13 kann man die 13 oder auch die 25 in Zehner und Einer zerlegen.'
+    ];
+    if(node.phase==='pick')return [
+      `Wie viele ganze Zehner stecken in ${node[node.axis]}? Wie viele Einer bleiben?`,
+      `Ein Beispiel: 27 kann man in 20 und 7 zerlegen. Welche zwei Teile passen zu deiner Zahl?`
+    ];
+    if(node.phase==='sum')return [
+      'Du hast zwei kleinere Ergebnisse. Beide gehören zu deiner größeren Malaufgabe.',
+      'Addiere erst die Zehner und dann die Einer der beiden Ergebnisse.'
+    ];
+    return [
+      'Du kennst vielleicht eine kleinere Einmaleins-Aufgabe, die dir weiterhilft.',
+      `Wenn eine Zahl auf 0 endet, rechne zuerst ohne diese 0 und denke danach wieder an ihren Stellenwert.`
+    ];
+  }
+  function mulRescueGuide() {
+    const node=currentMulNode(),hints=mulHints();
+    const examples={
+      plan:`Bei ${node.a} × ${node.b} kannst du selbst entscheiden: direkt rechnen oder einen Faktor zerlegen.`,
+      factor:`Du kannst die Zehner und Einer von ${mulCanSplit(node.b)?node.b:node.a} betrachten und dir überlegen, womit du anfangen willst.`,
+      pick:`${node[node.axis]} besteht aus ${Math.floor(node[node.axis]/10)*10} und ${node[node.axis]%10}. Beide Reihenfolgen sind erlaubt.`,
+      answer:`${node.a} × ${node.b} = ${node.a*node.b}. Überlege, welche kleinere Malaufgabe dir dabei hilft.`,
+      sum:node.children?`${node.children[0].value} + ${node.children[1].value} = ${node.children[0].value+node.children[1].value}. So setzt du die Teile wieder zusammen.`:''
+    };
+    return [
+      'Du bestimmst den Rechenweg. Statt alle Schritte vorzugeben, helfen wir dir beim nächsten eigenen Gedanken.',
+      hints[0]+' '+hints[1],
+      examples[node.phase]
+    ];
+  }
+  function mulMagicIdea() {
+    const node=currentMulNode(),a=node.a,b=node.b;
+    if(mulCanSplit(b))return [
+      `Du könntest ${b} in ${Math.floor(b/10)*10} und ${b%10} zerlegen.`,
+      `Dann passen die Teilrechnungen ${a} × ${Math.floor(b/10)*10} und ${a} × ${b%10}.`,
+      'Wenn beide fertig sind, addierst du die beiden Ergebnisse.'
+    ];
+    if(mulCanSplit(a))return [
+      `Du könntest ${a} in ${Math.floor(a/10)*10} und ${a%10} zerlegen.`,
+      `Dann passen die Teilrechnungen ${Math.floor(a/10)*10} × ${b} und ${a%10} × ${b}.`,
+      'Wenn beide fertig sind, addierst du die Ergebnisse.'
+    ];
+    if(a%10===0)return [`Bei ${a} × ${b} kannst du erst ${a/10} × ${b} rechnen.`,`Das ergibt ${(a/10)*b}.`,`Nimm dieses Ergebnis anschließend zehnmal.`];
+    if(b%10===0)return [`Bei ${a} × ${b} kannst du erst ${a} × ${b/10} rechnen.`,`Das ergibt ${a*(b/10)}.`,`Nimm dieses Ergebnis anschließend zehnmal.`];
+    return [`Das ist eine kleine Malaufgabe: ${a} × ${b}.`,`Du kannst dir ${b} Gruppen mit je ${a} Dingen vorstellen.`,`Prüfe dein Ergebnis auch mit ${b} × ${a}.`];
+  }
+  function checkDivision() {
+    const p=state.examples[state.current],s=state.division;
+    const value=Number(state.entry);
+    if(!Number.isSafeInteger(value)||value<0)return divisionWrong('Bitte gib eine ganze Zahl ein.');
+    if(s.phase==='choose') {
+      if(value===s.prefix&&s.parts.length===0){
+        s.picked=value;s.strategy='digits';
+        return divisionAdvance('digit_first',`Du hast die ersten Ziffern gewählt. ${s.prefix} steht hier für ${s.prefix*10} – die Zehner zählen mit! 🌷`);
+      }
+      if(value<p.d)return divisionWrong(`Wähle eine Teilzahl ab ${p.d}. Dann passt ${p.d} mindestens einmal hinein.`);
+      if(value>s.remaining)return divisionWrong(`Es sind nur noch ${s.remaining} da. Deine Teilzahl darf nicht größer sein.`);
+      if(value%p.d!==0)return divisionWrong(`Für einen einfachen Rechenweg sollte sich dein Teil ohne Rest durch ${p.d} teilen lassen. Versuch es mit einer passenden Zehnerzahl.`);
+      if(value!==s.remaining&&value%(10*p.d)!==0)return divisionWrong(`Mit ${value} müsstest du einen unnötig kleinen Teil abziehen. Wähle lieber eine Zahl, die ${p.d} mal einer glatten Zehnerzahl ist – oder beginne bei den ersten Ziffern.`);
+      s.picked=value;
+      return divisionAdvance('chunk_calculate','Du hast selbst einen Teil gewählt. Rechne ihn jetzt aus. 🌷');
+    }
+    if(s.phase==='chunk_calculate') {
+      if(value!==Math.floor(s.picked/p.d))return divisionWrong(`Prüfe: Wie oft passt ${p.d} ganz in ${s.picked}?`);
+      s.chunkQuotient=value;
+      if(s.picked%p.d!==0)return divisionAdvance('chunk_inner_remainder','Du hast richtig geteilt. Bei deiner Teilzahl ist noch ein Rest übrig.');
+      s.parts.push({n:s.picked,q:value,proposed:s.picked,rest:0});
+      if(s.picked===s.remaining){
+        s.remaining=0;
+        return s.parts.length===1?finishDivision():divisionAdvance('final','Du hast alle Teile geteilt. Jetzt setzt du das Ganze zusammen!');
+      }
+      return divisionAdvance('chunk_remainder','Deine Teilrechnung stimmt! Wie viel bleibt übrig?');
+    }
+    if(s.phase==='chunk_inner_remainder') {
+      const leftover=s.picked-s.chunkQuotient*p.d;
+      if(value!==leftover)return divisionWrong(`Rechne ${s.picked} − (${p.d} × ${s.chunkQuotient}).`);
+      const used=s.picked-value;
+      s.parts.push({n:used,q:s.chunkQuotient,proposed:s.picked,rest:value});
+      s.picked=used;
+      return divisionAdvance('chunk_remainder','Du hast den Rest deiner Teilrechnung gefunden. Wie viel von der ganzen Zahl ist noch nicht aufgeteilt?');
+    }
+    if(s.phase==='chunk_remainder') {
+      const left=s.remaining-s.picked;
+      if(value!==left)return divisionWrong(`Überprüfe die Subtraktion: ${s.remaining} − ${s.picked} = ?`);
+      s.remaining=left;s.picked=0;
+      return divisionAdvance('choose','Richtig! Jetzt bestimmst du selbst den nächsten Teil.');
+    }
+    if(s.phase==='digit_first') {
+      const digit=Math.floor(s.prefix/p.d);
+      if(value!==digit)return divisionWrong(`Wie oft passt ${p.d} ganz in ${s.prefix}?`);
+      s.firstDigit=value;
+      return divisionAdvance('digit_product','Gut! Jetzt finde heraus, wie viele Zehner du damit verteilt hast.');
+    }
+    if(s.phase==='digit_product') {
+      if(value!==p.d*s.firstDigit)return divisionWrong(`Prüfe: ${p.d} × ${s.firstDigit} = ?`);
+      s.firstProduct=value;
+      return divisionAdvance('digit_scale','Richtig! Die Anfangsziffern stehen für Zehner. Wie groß ist dein Teil wirklich?');
+    }
+    if(s.phase==='digit_scale') {
+      if(value!==s.firstProduct*10)return divisionWrong(`Rechne ${s.firstProduct} × 10. Vergiss den Stellenwert nicht.`);
+      s.scaledProduct=value;
+      return divisionAdvance('digit_subtract','Genau. Ziehe jetzt diesen großen Teil von der ganzen Zahl ab.');
+    }
+    if(s.phase==='digit_subtract') {
+      if(value!==p.n-s.scaledProduct)return divisionWrong(`Rechne ${p.n} − ${s.scaledProduct}.`);
+      s.nextValue=value;
+      return divisionAdvance('digit_last','Jetzt ist nur noch ein kleiner Rest zu teilen.');
+    }
+    if(s.phase==='digit_last') {
+      if(value!==s.nextValue/p.d)return divisionWrong(`Überprüfe: Welche Zahl mal ${p.d} ergibt ${s.nextValue}?`);
+      s.lastDigit=value;
+      return divisionAdvance('final','Du hast beide Stellen ausgerechnet. Was ergibt die ganze Aufgabe?');
+    }
+    if(s.phase==='direct') {
+      if(value!==p.n/p.d)return divisionWrong(`Prüfe mit der Umkehraufgabe: ${p.d} × deine Antwort müsste ${p.n} sein.`);
+      return finishDivision();
+    }
+    if(s.phase==='final') {
+      if(value!==p.n/p.d)return divisionWrong('Schau dir deine Teil-Ergebnisse an. Was ergeben sie zusammen?');
+      return finishDivision();
+    }
+  }
+  function changeDivisionPath(direct) {
+    if(state.mode!=='div'||state.solved||state.division.parts.length)return;
+    state.division.strategy='chunks';
+    divisionAdvance(direct?'direct':'choose');
+  }
+  function help() {
+    if(state.solved)return;
+    if(state.mode==='div')state.division.usedHelp=true;
+    if(state.mode==='mul')state.multiplication.usedHelp=true;
+    state.hintLevel=Math.min(2,state.hintLevel+1);render();
+  }
+  function divisionSuggestedPart() {
+    const p=state.examples[state.current],s=state.division;
+    return s.parts.length?s.remaining:Math.floor((p.n/p.d)/10)*p.d*10;
+  }
+  function solveTogether() {
+    if(state.solved||!state.rescueOpen||state.rescueLevel<2)return;
+    if(state.mode==='div') {
+      state.division.usedHelp=true;
+      const s=state.division,p=state.examples[state.current];
+      const target={choose:divisionSuggestedPart(),
+        chunk_calculate:Math.floor(s.picked/p.d),chunk_inner_remainder:s.picked-s.chunkQuotient*p.d,
+        chunk_remainder:s.remaining-s.picked,
+        digit_first:Math.floor(s.prefix/p.d),digit_product:p.d*s.firstDigit,
+        digit_scale:s.firstProduct*10,digit_subtract:p.n-s.scaledProduct,
+        digit_last:s.nextValue/p.d,
+        final:p.n/p.d,direct:p.n/p.d}[s.phase];
+      state.entry=String(target);
+      return checkDivision();
+    }
+    if(state.mode==='mul') {
+      state.multiplication.usedHelp=true;
+      const node=currentMulNode();
+      if(node.phase==='plan')return mulAction(mulCanSplit(node.a)||mulCanSplit(node.b)?'split':'direct');
+      if(node.phase==='factor')return mulAction(mulCanSplit(node.b)?'factor-b':'factor-a');
+      if(node.phase==='pick') {
+        state.entry=String(Math.floor(node[node.axis]/10)*10);
+        return checkMultiplication();
+      }
+      state.entry=String(node.phase==='sum'?node.children[0].value+node.children[1].value:node.a*node.b);
+      return checkMultiplication();
+    }
+    state.solved=true;state.assisted=true;state.entry=String(state.steps[state.step].answer);
+    awardTab();
+    state.feedback='So geht dieser Schritt. Weiter geht’s! 💗';render();
+  }
+  function rescue() {
+    state.rescueOpen=!state.rescueOpen;
+    if(state.rescueOpen)state.rescueLevel=0;
+    render();
+  }
+  function rescueMore() {
+    if(!state.rescueOpen)return;
+    state.rescueLevel=Math.min(2,state.rescueLevel+1);
+    render();
+  }
+  function divisionHints() {
+    const s=state.division,p=state.examples[state.current],d=p.d;
+    if(s.phase==='choose')return s.parts.length?[
+      `Es sind noch ${s.remaining} übrig. Du kannst davon selbst einen passenden Teil auswählen.`,
+      `Du darfst auch die ganzen ${s.remaining} auf einmal durch ${d} teilen.`
+    ]:[
+      `Du darfst selbst wählen: eine große passende Teilzahl suchen oder links bei den Anfangsziffern beginnen.`,
+      `Du kannst auch eine Zahl nehmen, bei der ein Rest bleibt. Dann musst du den Rest danach beachten.`
+    ];
+    if(s.phase==='chunk_calculate')return [
+      `Wie oft passt ${d} ganz in ${s.picked}? Du darfst einen Rest behalten.`,
+      `Suche die größte Malaufgabe ${d} × ? , deren Ergebnis nicht größer als ${s.picked} ist.`
+    ];
+    if(s.phase==='chunk_inner_remainder')return [
+      `Du hast ${d} genau ${s.chunkQuotient}-mal genommen. Wie viele sind das zusammen?`,
+      `Ziehe ${d*s.chunkQuotient} von ${s.picked} ab.`
+    ];
+    if(s.phase==='chunk_remainder')return [
+      'Zähle, wie viele von der bisherigen Zahl noch nicht verteilt sind.',
+      `Rechne dazu ${s.remaining} − ${s.picked}.`
+    ];
+    if(s.phase==='digit_first')return [
+      `Wie oft passt ${d} in ${s.prefix}, ohne darüberzukommen?`,
+      `Suche die größte passende Zahl in der ${d}er-Reihe unter ${s.prefix+1}. Wie oft hast du ${d} genommen?`
+    ];
+    if(s.phase==='digit_product')return [
+      `Du hast ${s.firstDigit} als erste Ergebnisziffer gefunden. Welche Malaufgabe zeigt das?`,
+      `Rechne ${d} × ${s.firstDigit}. Das Ergebnis steht für Zehner.`
+    ];
+    if(s.phase==='digit_scale')return [
+      `Bei ${p.n} : ${d} steht ${s.prefix} für ${s.prefix*10}. Welche Bedeutung hat dann dein Ergebnis ${s.firstProduct}?`,
+      `Du hast ${s.firstProduct} Zehner. Wie viele einzelne Dinge sind das?`
+    ];
+    if(s.phase==='digit_subtract')return [
+      `Von der Gesamtzahl ${p.n} ist ein großer Teil bereits aufgeteilt. Was bleibt übrig?`,
+      `Rechne ${p.n} − ${s.scaledProduct}.`
+    ];
+    if(s.phase==='digit_last')return [
+      `Rechne ${s.nextValue} : ${d}.`,
+      `Finde die Malaufgabe ${d} × ? = ${s.nextValue}.`
+    ];
+    if(s.phase==='final')return s.strategy==='digits'?[
+      'Dein erstes Ergebnis steht bei den Zehnern, das zweite bei den Einern.',
+      `Du hast ${s.firstDigit} Zehner und ${s.lastDigit} Einer. Welche Zahl ist das zusammen?`
+    ]:[
+      'Du hast selbst Teile gewählt und geteilt. Jetzt gehören sie wieder zusammen.',
+      `Addiere deine Teil-Ergebnisse: ${s.parts.map(item=>item.q).join(' + ')}.`
+    ];
+    return [`Wenn du das Ergebnis schon weißt, prüfe es mit einer Malaufgabe.`,
+      `Suche die Zahl, die mit ${d} multipliziert ${p.n} ergibt.`];
+  }
+  function divisionRescueGuide() {
+    const s=state.division,p=state.examples[state.current],d=p.d;
+    const example='Zum Beispiel: 84 : 4 lässt sich als 80 : 4 und 4 : 4 rechnen. Du kannst aber auch bei 8 : 4 anfangen.';
+    const hints=divisionHints();
+    const specific={
+      choose:`Eine mögliche Wahl wäre ${divisionSuggestedPart()} : ${d}. Das ist aber nicht der einzige richtige Anfang.`,
+      chunk_calculate:`Du hast ${s.picked} : ${d} gewählt. Prüfe, wie oft ${d} in ${s.picked} steckt.`,
+      chunk_inner_remainder:`${s.picked} − ${d*s.chunkQuotient} = ${s.picked-d*s.chunkQuotient} ist der Rest deiner Teilrechnung.`,
+      chunk_remainder:`Von ${s.remaining} ziehst du deinen Teil ${s.picked} ab.`,
+      digit_first:`Du hast ${s.prefix} : ${d} gewählt. Es passt ${Math.floor(s.prefix/d)}-mal hinein.`,
+      digit_product:`${d} × ${s.firstDigit} = ${d*s.firstDigit}.`,
+      digit_scale:`${s.firstProduct} × 10 = ${s.firstProduct*10}.`,
+      digit_subtract:`${p.n} − ${s.scaledProduct} = ${p.n-s.scaledProduct}.`,
+      digit_last:`${s.nextValue} : ${d} = ${s.nextValue/d}.`,
+      final:`Dein Gesamtergebnis ist ${p.n/d}. Überlege, warum deine einzelnen Rechnungen genau dorthin führen.`,
+      direct:`${p.n} : ${d} = ${p.n/d}, denn ${d} × ${p.n/d} = ${p.n}.`
+    };
+    return [
+      'Du entscheidest zuerst, welche Rechnung dir hilft. Die App verrät dir keinen Pflichtweg. '+example,
+      hints[0]+' '+hints[1],
+      specific[s.phase]
+    ];
+  }
+  // The lifebuoy is a guided explanation, not a copy of the Denktipps.
+  // The first panel explains the idea, the second uses a different worked
+  // example, and the third applies the method to Rosalie's current numbers.
+  function rescueGuide() {
+    const p=state.examples[state.current],step=state.step;
+    if(state.mode==='div')return divisionRescueGuide();
+    if(state.mode==='mul')return mulRescueGuide();
+    if(state.mode==='div') {
+      const factor=Math.floor((p.n/p.d)/10),target=Math.floor(p.n/10),little=p.d*factor,big=little*10,rest=p.n-big;
+      const tens=Math.floor(rest/10)*10,ones=rest%10;
+      return [
+        [ `Wir suchen eine Zahl aus der ${p.d}er-Reihe. Sie muss kleiner als ${target} sein oder genau ${target} ergeben.`,
+          'Beispiel: Bis 14 darfst du in der 3er-Reihe gehen: 3, 6, 9, 12. Die 15 wäre schon zu groß.',
+          `Jetzt du: Schreibe ${p.d} × 1, ${p.d} × 2 und so weiter auf. Hör bei der letzten Zahl auf, die nicht größer als ${target} ist.` ],
+        [ `Mal 10 macht aus Einern Zehner. Beispiel: Aus 4 wird 40.`,
+          'Stell dir 7 einzelne Plättchen vor. In 10 gleichen Gruppen liegen zusammen 70 Plättchen.',
+          `Du hast ${little}. Schreibe diese Zahl auf und hänge eine Null an. So rechnest du ${little} × 10.` ],
+        [ `Bei ${p.n} − ${big} suchen wir den Abstand zwischen zwei Zahlen.`,
+          'Anderes Beispiel: Du hast 20 Euro und möchtest 27 Euro. Von 20 bis 27 sind es 7 Euro. Also 27 − 20 = 7.',
+          `Starte bei ${big}. Gehe ${tens} bis ${big+tens} weiter und danach ${ones} Einer bis ${p.n}. Addiere ${tens} + ${ones}.` ],
+        [ `Teilen ist das Gegenteil von Malnehmen: Wenn 3 × 20 = 60 gilt, dann ist 60 : 3 = 20.`,
+          'Beispiel: 4 × 3 = 12. Machst du die 12 zehnmal so groß, wird aus 4 × 3 die Aufgabe 40 × 3 = 120.',
+          `Du weißt schon: ${p.d} × ${factor} = ${little}. Für ${big} brauchst du zehnmal ${factor}. Rechne ${factor} × 10.` ],
+        [ `Hier teilen wir nur den kleinen Rest: ${rest} : ${p.d}.`,
+          'Beispiel: 12 Bonbons werden an 3 Kinder verteilt. Jedes Kind bekommt 4, denn 3 × 4 = 12.',
+          `Probiere: ${p.d} × 1, ${p.d} × 2 und weiter. Bei welchem Mal-Ergebnis erreichst du genau ${rest}?` ],
+        [ 'Du hast zwei Teil-Ergebnisse. Beide gehören zur gleichen Aufgabe und müssen noch addiert werden.',
+          'Beispiel: Von einer Sammlung kommen 40 Sticker aus einer Schachtel und 3 aus einer zweiten. Zusammen sind es 43.',
+          `Rechne ${big/p.d} + ${rest/p.d}. Beginne mit den Zehnern und addiere danach die Einer.` ]
+      ][step];
+    }
+    if(state.mode==='mul') {
+      const remaining=p.b-10,digit=Math.floor(p.a/10),ones=p.a%10,base=digit*remaining;
+      return [
+        [ `Wir zerlegen die ${p.b} Gruppen in 10 Gruppen und ${remaining} weitere Gruppen.`,
+          'Beispiel: 12 × 3 = 10 × 3 + 2 × 3. Wir rechnen also zuerst die 10 Gruppen.',
+          `Rechne jetzt nur die ersten 10 Gruppen mit je ${p.a}: ${p.a} × 10.` ],
+        [ `Die Zehnerziffer von ${p.a} ist ${digit}. Wir rechnen zuerst mit dieser kleinen Ziffer.`,
+          'Beispiel: Für 24 × 3 rechnen wir zuerst 2 × 3 und danach 4 × 3. Die 2 bedeutet später 20.',
+          `Rechne ${digit} × ${remaining}. Die ${digit} steht dabei für ${digit*10}; deshalb machen wir das Ergebnis im nächsten Schritt zehnmal so groß.` ],
+        [ `Jetzt nehmen wir das Ergebnis ${base} zehnmal. So berücksichtigen wir die Zehner richtig.`,
+          'Beispiel: 2 Zehner mal 3 sind 6 Zehner. 6 Zehner sind 60.',
+          `Schreibe ${base} und hänge eine Null an. Das ist ${digit*10} × ${remaining}.` ],
+        [ `Die Einerziffer von ${p.a} ist ${ones}. Jetzt rechnen wir mit den Einern.`,
+          'Beispiel: Bei 24 × 3 rechnest du für die Einer 4 × 3. Danach kommen Zehner und Einer zusammen.',
+          `Rechne ${ones} × ${remaining}. Das sind die Einer für ${p.a} × ${remaining}.` ],
+        [ `Jetzt haben wir die Zehner und die Einer von ${p.a} × ${remaining} getrennt ausgerechnet.`,
+          'Beispiel: Aus 20 × 3 = 60 und 4 × 3 = 12 wird 60 + 12 = 72.',
+          `Addiere ${base*10} + ${ones*remaining}. So bekommst du ${p.a} × ${remaining}.` ],
+        [ `Ganz am Anfang haben wir ${p.b} in 10 und ${remaining} zerlegt. Jetzt verbinden wir diese beiden Ergebnisse.`,
+          'Beispiel: 3 × 12 ist 3 × 10 plus 3 × 2. Also 30 + 6 = 36.',
+          `Addiere ${p.a*10} + ${p.a*remaining}. Das ergibt ${p.a} × ${p.b}.` ]
+      ][step];
+    }
+    const before=Math.max(0,p.b-1)*p.a;
+    return [
+      `Malnehmen heißt: gleich große Gruppen zusammenzählen. ${p.b} × ${p.a} bedeutet ${p.b} Gruppen mit jeweils ${p.a}.`,
+      'Beispiel: 3 × 4 sind drei Gruppen mit je vier Punkten. Das ist 4 + 4 + 4 = 12.',
+      p.b===1?`Du brauchst nur eine Gruppe mit ${p.a}.`: `Nach ${p.b-1} Gruppen sind es ${before}. Addiere die letzte Gruppe mit ${p.a} dazu: ${before} + ${p.a}.`
+    ];
+  }
+  function rescueExplanation(){return rescueGuide()[0];}
+  function finishedWorking(p) {
+    if(state.mode==='div') {
+      const factor=Math.floor((p.n/p.d)/10),little=p.d*factor,big=little*10,rest=p.n-big,first=big/p.d,second=rest/p.d;
+      return [
+        `${p.d} × ${factor} = ${little}`,
+        `${little} × 10 = ${big}`,
+        `${p.n} − ${big} = ${rest}`,
+        `${big} : ${p.d} = ${first}`,
+        `${rest} : ${p.d} = ${second}`,
+        `${first} + ${second} = ${first+second}`
+      ];
+    }
+    const o=p.b-10,large=p.a*10,small=p.a*o,digit=Math.floor(p.a/10),one=p.a%10,base=digit*o,tensPart=base*10,onesPart=one*o;
+    return [`${p.b} = 10 + ${o}`,`${p.a} × 10 = ${large}`,`${digit} × ${o} = ${base}`,`${base} × 10 = ${tensPart}`,`${one} × ${o} = ${onesPart}`,`${tensPart} + ${onesPart} = ${small}`,`${large} + ${small} = ${p.a*p.b}`];
+  }
+  function workingSummary(p) {
+    if(state.mode==='tab')return '';
+    const lines=finishedWorking(p);
+    const answer=state.mode==='div'?p.n/p.d:p.a*p.b;
+    return `<section class="working-summary" aria-label="Dein vollständiger Rechenweg"><h3>✏️ Dein Rechenweg</h3><div class="working-lines"><strong class="working-task">${mathText()}</strong>${lines.map((line,i)=>`<div class="working-line"><span class="working-number">${i+1}.</span><span>${line}</span></div>`).join('')}<strong class="working-answer">Ergebnis: ${answer} 💗</strong></div></section>`;
+  }
+  function next() {
+    if(!state.solved)return;
+    if(state.mode==='div'||state.mode==='mul') {
+      state.progress[state.mode]=(state.progress[state.mode]||0)+1;saveProgress();
+      state.current++;state.sessionStats.done++;
+      if(state.current>=state.examples.length)state.screen='finish';
+      else newExample();
+      render();window.scrollTo({top:0,behavior:'instant'});return;
+    }
+    if(state.step+1<state.steps.length){state.step++;resetStep();render();return;}
+    if(state.mode==='tab') {
+      if(state.tabDone.length>=state.examples.length)state.screen='finish';
+      else {
+        const startAt=(state.current+1)%state.examples.length;
+        for(let i=0;i<state.examples.length;i++){
+          const idx=(startAt+i)%state.examples.length;
+          if(!state.tabDone.includes(idx)){state.current=idx;break;}
+        }
+        newExample();
+      }
+    } else {
+      state.progress[state.mode]=(state.progress[state.mode]||0)+1;saveProgress();state.current++;
+      state.sessionStats.done++;
+      if(state.current>=state.examples.length)state.screen='finish';else newExample();
+    }
+    render();window.scrollTo({top:0,behavior:'instant'});
+  }
+  function chooseTab(index) {
+    if(state.mode!=='tab'||state.screen!=='play'||index<0||index>=state.examples.length||state.tabDone.includes(index))return;
+    state.current=index;newExample();render();window.scrollTo({top:0,behavior:'instant'});
+  }
+  function skip() {
+    if(state.screen!=='play')return;
+    if(state.mode==='tab'&&state.solved)return next();
+    state.progress.skipped[state.mode]=(state.progress.skipped[state.mode]||0)+1;
+    state.sessionStats.skipped++;
+    saveProgress();
+    if(state.mode==='tab') {
+      const nextIndex=state.examples.findIndex((_,i)=>i!==state.current&&!state.tabDone.includes(i));
+      if(nextIndex>=0)state.current=nextIndex;
+    } else {
+      const exclude=state.examples;
+      state.examples[state.current]=freshExample(state.mode,exclude);
+    }
+    newExample();render();window.scrollTo({top:0,behavior:'instant'});
+  }
+
+  function picture(icon) {
+    return icon==='🧱'?'<span class="lego-brick" role="img" aria-label="LEGO-Stein"></span>':`<span aria-hidden="true">${icon}</span>`;
+  }
+  const RECIPIENT_KINDS = {
+    Kinder:'kid',Geburtstagsgäste:'kid',Freundinnen:'kid',
+    Dosen:'can',Baukästen:'box',Geschenktüten:'bag',Geburtstagstüten:'bag',
+    Bastelgruppen:'group',Feste:'party',Schachteln:'box',Kisten:'box',
+    Basteltische:'table',Kinderfeste:'party',Geburtstagsfeiern:'party',Tabletts:'tray',
+    Backblechen:'tray',Stickerbögen:'sheet','LEGO-Kisten':'box',Bastelkisten:'box',
+    Tüten:'bag',Perlenkästen:'box',Beutel:'bag',Körbchen:'basket',Münzen:'coin',
+    Picknickkörbe:'basket',Puzzles:'box',Schulfeste:'party',Kuchen:'tray'
+  };
+  function recipientPicture(recipient,index=0) {
+    const faces=['👧🏻','👦🏽','👧🏿','👦🏼','🧒🏾','👧🏼','👦🏿','🧒🏻','👧🏽'];
+    const type=RECIPIENT_KINDS[recipient];
+    if(type==='kid')return `<span class="recipient-emoji child-face">${faces[index%faces.length]}</span>`;
+    if(type==='can')return '<span class="recipient-graphic can-graphic"></span>';
+    if(type==='tray')return '<span class="recipient-graphic tray-graphic"></span>';
+    if(type==='table')return '<span class="recipient-graphic table-graphic"></span>';
+    if(type==='sheet')return '<span class="recipient-graphic sheet-graphic">✦</span>';
+    const symbols={box:'📦',bag:'🛍️',party:'🎉',group:'👩🏽‍🎨',basket:'🧺',coin:'🪙'};
+    return `<span class="recipient-emoji">${symbols[type]||'📦'}</span>`;
+  }
+  function scene(p) {
+    if(state.mode==='div') {
+      const items=Array.from({length:p.d},(_,i)=>`<span class="little-object" title="${p.recipient}">${recipientPicture(p.recipient,i)}</span>`).join('');
+      return `<div class="story-scene" aria-hidden="true"><span class="pile">${picture(p.icon)} <b>${p.n}</b><small>insgesamt</small></span><span class="story-arrow">➜</span><span class="recipient-stack"><span class="baskets">${items}</span><strong class="recipient-caption">${p.d} ${p.recipient}</strong></span></div>`;
+    }
+    if(state.mode==='mul') {
+      if(p.a===25&&p.icon==='🪙') return `<div class="coin-scene" aria-hidden="true">${Array.from({length:p.b},()=>'<span class="coin">25<small>ct</small></span>').join('')}</div>`;
+      const recipientLabel=p.recipient==='Backblechen'?'Backbleche':p.recipient;
+      return `<div class="story-scene" aria-hidden="true"><span class="pile">${picture(p.icon)} <b>${p.a}</b><small>jeweils</small></span><span class="story-arrow">×</span><span class="pile pale">${recipientPicture(p.recipient)} <b>${p.b}</b><small>${recipientLabel}</small></span></div>`;
+    }
+    return '';
+  }
+
+  function renderHome() {
+    const n=(state.progress.div||0)+(state.progress.mul||0)+(state.progress.tab||0);
+    const skipped=Object.values(state.progress.skipped||{}).reduce((a,b)=>a+(Number(b)||0),0);
+    return `<section class="hero magic-hero"><div class="hero-content">
+      <span class="eyebrow">✦ Geschichten, Rechentipps & kleine Erfolge</span>
+      <h1>Hallo Rosalie!<br>Willkommen im Zahlenland.</h1>
+      <p>Hier übst du mit LEGO-Steinen, Kuchen und Münzen. Wenn du nicht weiterweißt, helfen dir Denktipps und der Rettungsring.</p>
+      </div><div class="hero-illustration" aria-hidden="true"><span class="magic-heart">💗</span><span class="magic-flower">🌸</span><span class="magic-spark">✨</span></div></section>
+      <section aria-labelledby="games-title"><div class="section-heading"><div><h2 id="games-title">Was möchtest du üben?</h2><p>Wähle eine Rechenart. Die Aufgaben wechseln jedes Mal.</p></div>${n||skipped?`<span class="session-pill">${n} gelöst · ${skipped} übersprungen 💗</span>`:''}</div>
+      <div class="mode-grid">
+        <button type="button" class="mode-card primary" data-mode="div"><span class="mode-icon">${picture('🧱')}</span><span class="card-arrow">→</span><h3>Geteilt-Land</h3><p>Hier teilst du Dinge in gleich große Gruppen auf.</p><span class="example">Zum Beispiel 470 : 5</span></button>
+        <button type="button" class="mode-card multiply" data-mode="mul"><span class="mode-icon">🪙</span><span class="card-arrow">→</span><h3>Mal-Land</h3><p>Hier rechnest du Malaufgaben mit Geschichten.</p><span class="example">Zum Beispiel 25 × 13</span></button>
+        <button type="button" class="mode-card warmup" data-mode="tab"><span class="mode-icon">👣</span><span class="mode-text"><h3>Zahlen-Hüpfspiel</h3><p>Wähle eine Zahlenkarte. Mit der Maus bewegst du die Fußspuren; am Handy tippst du auf die Karte.</p></span><span class="card-arrow">→</span></button>
+      </div></section>`;
+  }
+
+  function renderDivision() {
+    const p=state.examples[state.current],s=state.division,d=p.d;
+    const eq=`${p.n} : ${d}`;
+    const history=s.strategy==='digits'?[ 
+      ...(s.firstDigit===null?[]:[`${s.prefix} : ${d} → ${s.firstDigit} Zehner`]),
+      ...(s.firstProduct===null?[]:[`${d} × ${s.firstDigit} = ${s.firstProduct}`]),
+      ...(s.scaledProduct===null?[]:[`${s.firstProduct} × 10 = ${s.scaledProduct} (wirklich abgezogener Teil)`]),
+      ...(s.nextValue===null?[]:[`${p.n} − ${s.scaledProduct} = ${s.nextValue}`]),
+      ...(s.lastDigit===null?[]:[`${s.nextValue} : ${d} = ${s.lastDigit} (Rest-Ergebnis)`])
+    ]:s.parts.map(item=>item.rest?`${item.proposed} : ${d} = ${item.q} Rest ${item.rest} (${item.n} aufgeteilt)`:`${item.n} : ${d} = ${item.q}`);
+    const notation={
+      choose:{headline:'Welche Teilrechnung würdest du vorschlagen?',instruction:`Du darfst selbst entscheiden. Tippe die Zahl vor „: ${d}“ ein.`,lhs:'',rhs:` : ${d}`},
+      chunk_calculate:{headline:'Rechne deine gewählte Teilaufgabe aus.',instruction:`Wie oft passt ${d} ganz in ${s.picked}? Wenn etwas übrig bleibt, fragen wir gleich danach.`,lhs:`${s.picked} : ${d} →`,rhs:'-mal'},
+      chunk_inner_remainder:{headline:'Wie viel bleibt von deiner Teilzahl übrig?',instruction:`Du hast ${s.chunkQuotient}-mal ${d} genommen. Was ist der Rest von ${s.picked}?`,lhs:`${s.picked} − ${s.chunkQuotient*d} =`,rhs:''},
+      chunk_remainder:{headline:'Wie viel ist noch übrig?',instruction:`Du hattest ${s.remaining}. Davon hast du ${s.picked} genommen. Was bleibt?`,lhs:`${s.remaining} − ${s.picked} =`,rhs:''},
+      digit_first:{headline:'Wie oft passt die Zahl hinein?',instruction:`Du hast mit ${s.prefix} : ${d} angefangen. Wie oft passt ${d} hinein, ohne darüberzukommen?`,lhs:`${s.prefix} : ${d} →`,rhs:'-mal'},
+      digit_product:{headline:'Welche Malaufgabe passt dazu?',instruction:`Du hast ${s.firstDigit} Zehner als erste Ergebnisziffer. Rechne nun ${d} × ${s.firstDigit}.`,lhs:`${d} × ${s.firstDigit} =`,rhs:''},
+      digit_scale:{headline:'Was bedeutet das bei der großen Zahl?',instruction:`${s.prefix} steht für ${s.prefix*10}. Deshalb stehen auch deine ${s.firstProduct} für Zehner.`,lhs:`${s.firstProduct} × 10 =`,rhs:''},
+      digit_subtract:{headline:'Wie viel bleibt von der ganzen Zahl?',instruction:`Du hast ${s.scaledProduct} verteilt. Rechne jetzt mit der ganzen Zahl.`,lhs:`${p.n} − ${s.scaledProduct} =`,rhs:''},
+      digit_last:{headline:'Rechne deine zweite Teilaufgabe.',instruction:`Was ist ${s.nextValue} : ${d}?`,lhs:`${s.nextValue} : ${d} =`,rhs:''},
+      final:{headline:'Was ergibt die ganze Aufgabe?',instruction:s.strategy==='digits'?`Du hast ${s.firstDigit} Zehner (= ${s.firstDigit*10}) und ${s.lastDigit} Einer ausgerechnet. Verbinde beide Ergebnisse.`:'Du hast alle Teile selbst gewählt und geteilt. Jetzt gehören ihre Ergebnisse wieder zusammen.',lhs:`${eq} =`,rhs:''},
+      direct:{headline:'Versuche die ganze Aufgabe selbst.',instruction:`Wenn du die Antwort auf ${eq} schon weißt, gib sie ein.`,lhs:`${eq} =`,rhs:''},
+      done:{headline:'Du hast es geschafft!',instruction:'',lhs:`${eq} =`,rhs:''}
+    }[s.phase];
+    const keys=[1,2,3,4,5,6,7,8,9,'back',0,'check'];
+    const pad=keys.map(k=>k==='back'?'<button class="key delete" type="button" data-erase aria-label="Letzte Ziffer löschen">⌫</button>':k==='check'?'<button class="key check" type="button" data-check aria-label="Eingabe prüfen">✓</button>':`<button class="key" type="button" data-digit="${k}">${k}</button>`).join('');
+    const notebook=history.length?`<div class="freeway-notebook" aria-label="Deine eigenen Teilrechnungen"><h3>✏️ Dein bisheriger Rechenweg</h3><ol>${history.map(item=>`<li>${item}</li>`).join('')}</ol>${s.strategy==='chunks'&&s.phase==='choose'?`<p class="freeway-remaining">Noch übrig: ${s.remaining}</p>`:''}</div>`:``;
+    const hintTexts=divisionHints();
+    const magic=magicFor('div',p);
+    const magicBox=state.magicOpen?`<div class="magic-box" role="note"><strong>🪄 Nur eine mögliche Rechenidee</strong><ol class="magic-list">${magic.lines.map(line=>`<li>${line}</li>`).join('')}</ol><p>Andere richtige Wege sind genauso gut.</p></div>`:'';
+    const rescuePanel=state.rescueOpen&&!state.solved?`<div class="rescue-panel" role="region" aria-label="Hilfe zum eigenen Rechenweg"><h4>🛟 Wir überlegen zusammen</h4><span class="rescue-stage">Erklärung ${state.rescueLevel+1} von 3</span><p class="rescue-story">${divisionRescueGuide()[state.rescueLevel]}</p>${state.rescueLevel<2?'<button type="button" class="rescue-next" data-rescue-more>Noch etwas mehr Hilfe →</button>':'<button type="button" class="rescue-next" data-together>🤝 Zeig mir einen möglichen nächsten Schritt</button>'}<p class="rescue-reminder">Du darfst jederzeit zu deinem eigenen Weg zurückkehren.</p></div>`:'';
+    return `<div class="activity-top"><button class="back" type="button" data-home>← Startseite</button><div class="activity-tools"><button class="sound-toggle" type="button" data-sound aria-pressed="${state.soundEnabled}">${state.soundEnabled?'🔊 Ton ausschalten':'🔇 Ton einschalten'}</button><button class="skip-button" type="button" data-skip>↪ Andere Aufgabe</button><span class="round-count">Aufgabe ${state.current+1} von ${state.examples.length}</span></div></div>
+      <div class="activity-heading"><span class="overline">Geteilt-Land ✨ · Dein eigener Weg</span></div>
+      <section class="task-card updated-task" aria-label="Geteilt-Aufgabe selbst lösen">
+        <div class="story-panel story-at-top"><div class="story-heading">🌸 Die Geschichte dazu</div>${storyMarkup(p.story)}${scene(p)}</div>
+        <div class="whole-task"><span class="whole-task-label">Die ganze Aufgabe</span><h2 class="whole-task-equation">${eq} = ?</h2></div>
+        ${notebook}
+        ${s.phase==='done'?`<div class="freeway-result"><span class="heart-celebration" aria-hidden="true">💖 🌟 💗</span><strong>${eq} = ${p.n/d}</strong><p>${state.feedback}</p><p>Probe: ${d} × ${p.n/d} = ${p.n} ✓</p></div><button type="button" class="continue" data-next>${state.current+1>=state.examples.length?'Runde abschließen →':'Nächste Aufgabe →'}</button>`:
+        `<h3 class="freeway-heading">${notation.headline}</h3><p class="freeway-intro">${notation.instruction}</p>
+        <div class="freeway-choice" aria-label="Deine Eingabe"><span class="answer-label">Deine Zahl</span><span class="operator">${notation.lhs}</span><div class="answer-screen" aria-live="polite">${state.entry||'<span class="answer-placeholder">?</span>'}</div><span class="operator">${notation.rhs}</span></div>
+        ${state.feedback?`<p class="feedback" role="status">${state.feedback}</p>`:''}
+        <div class="num-pad" aria-label="Zahl eingeben">${pad}</div>
+        ${s.parts.length===0&&(s.phase==='choose'||s.phase==='direct')?`<div class="freeway-actions"><button class="freeway-switch" type="button" data-direct>${s.phase==='direct'?'← Lieber in Teilrechnungen':'Ich kann die ganze Aufgabe schon →'}</button></div>`:''}
+        <p class="freeway-help">💗 Hier gibt es keinen einzigen vorgeschriebenen Rechenweg.</p>
+        <div class="help-buttons"><button class="help-button thought" type="button" data-hint>💡 ${state.hintLevel===0?'Denktipp':state.hintLevel===1?'Noch ein Tipp':'Tipps ansehen'}</button><button class="help-button magic" type="button" data-magic>🪄 Eine Rechenidee</button></div>
+        <button class="rescue-button" type="button" data-rescue>🛟 ${state.rescueOpen?'Hilfe schließen':'Hilfe, ich komme nicht weiter'}</button>
+        ${state.hintLevel?`<div class="hint-box" role="note"><strong>💡 Denktipp ${state.hintLevel}:</strong> ${hintTexts[state.hintLevel-1]}</div>`:''}
+        ${magicBox}${rescuePanel}`}
+      </section>`;
+  }
+
+  function multiplicationPlanLines(root) {
+    const lines=[];
+    function visit(node) {
+      if(!node.children)return;
+      const [left,right]=node.children;
+      const formula=`${node.a} × ${node.b} = (${left.a} × ${left.b}) + (${right.a} × ${right.b})`;
+      lines.push(node.value===null?formula:`${formula} = ${node.value}`);
+      visit(left);visit(right);
+    }
+    visit(root);return lines;
+  }
+  function renderMultiplication() {
+    const p=state.examples[state.current],m=state.multiplication,node=currentMulNode();
+    const canSplit=mulCanSplit(node.a)||mulCanSplit(node.b);
+    const isDone=state.solved;
+    const lines=multiplicationPlanLines(m.root);
+    const keys=[1,2,3,4,5,6,7,8,9,'back',0,'check'];
+    const pad=keys.map(k=>k==='back'?'<button class="key delete" type="button" data-erase aria-label="Letzte Ziffer löschen">⌫</button>':k==='check'?'<button class="key check" type="button" data-check aria-label="Eingabe prüfen">✓</button>':`<button class="key" type="button" data-digit="${k}">${k}</button>`).join('');
+    const hintTexts=mulHints();
+    const idea=mulMagicIdea();
+    const magicBox=state.magicOpen?`<div class="magic-box" role="note"><strong>🪄 Nur eine mögliche Rechenidee</strong><ol class="magic-list">${idea.map(line=>`<li>${line}</li>`).join('')}</ol><p>Dein eigener Rechenweg darf anders aussehen.</p></div>`:'';
+    const rescuePanel=state.rescueOpen&&!isDone?`<div class="rescue-panel" role="region" aria-label="Hilfe zum Malrechnen"><h4>🛟 Wir überlegen zusammen</h4><span class="rescue-stage">Erklärung ${state.rescueLevel+1} von 3</span><p class="rescue-story">${mulRescueGuide()[state.rescueLevel]}</p>${state.rescueLevel<2?'<button type="button" class="rescue-next" data-rescue-more>Noch etwas mehr Hilfe →</button>':'<button type="button" class="rescue-next" data-together>🤝 Zeig mir einen möglichen nächsten Schritt</button>'}</div>`:'';
+    const inputData={
+      pick:{heading:`Wie möchtest du ${node[node.axis]} zerlegen?`,instruction:'Gib zuerst einen Teil ein. Der andere ergibt sich dann daraus.',lhs:'',rhs:` + ? = ${node[node.axis]}`},
+      answer:{heading:'Rechne deine gewählte Teilaufgabe aus.',instruction:'Wenn du möchtest, kannst du dafür auch erst eine noch kleinere Teilrechnung wählen.',lhs:`${node.a} × ${node.b} =`,rhs:''},
+      sum:{heading:'Wie setzt du die beiden Teil-Ergebnisse zusammen?',instruction:'Beide Teilrechnungen gehören zur gleichen ursprünglichen Aufgabe.',lhs:`${node.children?.[0].value} + ${node.children?.[1].value} =`,rhs:''}
+    }[node.phase];
+    const numericArea=inputData?`<h3 class="freeway-heading">${inputData.heading}</h3><p class="freeway-intro">${inputData.instruction}</p>
+      <div class="freeway-choice" aria-label="Deine Eingabe"><span class="answer-label">Deine Zahl</span><span class="operator">${inputData.lhs}</span><div class="answer-screen" aria-live="polite">${state.entry||'<span class="answer-placeholder">?</span>'}</div><span class="operator">${inputData.rhs}</span></div>
+      ${state.feedback?`<p class="feedback" role="status">${state.feedback}</p>`:''}<div class="num-pad" aria-label="Zahl eingeben">${pad}</div>
+      ${node.phase==='answer'&&canSplit?'<div class="freeway-actions"><button class="freeway-switch" type="button" data-mul-action="back">← Lieber zerlegen</button></div>':''}
+      ${node.phase==='pick'?'<div class="freeway-actions"><button class="freeway-switch" type="button" data-mul-action="back">← Andere Zahl zerlegen</button></div>':''}`:'';
+    const actions=!isDone&&(node.phase==='plan'||node.phase==='factor')?`<h3 class="freeway-heading">${node.phase==='plan'?`Was möchtest du mit ${node.a} × ${node.b} machen?`:'Welche Zahl möchtest du selbst zerlegen?'}</h3>
+      <p class="freeway-intro">${node.phase==='plan'?'Du bestimmst den Rechenweg. Du kannst eine Rechnung direkt lösen oder sie vereinfachen.':'Wähle die Zahl, mit der du deinen Rechenweg beginnen willst.'}</p>
+      ${node.phase==='plan'?`<button class="freeway-meaning" type="button" data-mul-action="direct">Ich kann diese Malaufgabe ausrechnen.<small>Ich gebe das Ergebnis selbst ein.</small></button>${canSplit?'<button class="freeway-meaning" type="button" data-mul-action="split">Ich möchte eine Zahl zerlegen.<small>Ich entscheide selbst, welche Teilrechnungen mir helfen.</small></button>':''}`:
+      `${mulCanSplit(node.a)?`<button class="freeway-meaning" type="button" data-mul-action="factor-a">Ich zerlege die ${node.a}.</button>`:''}${mulCanSplit(node.b)?`<button class="freeway-meaning" type="button" data-mul-action="factor-b">Ich zerlege die ${node.b}.</button>`:''}<button class="freeway-switch" type="button" data-mul-action="back">← Zurück</button>`}`:'';
+    return `<div class="activity-top"><button class="back" type="button" data-home>← Startseite</button><div class="activity-tools"><button class="sound-toggle" type="button" data-sound aria-pressed="${state.soundEnabled}">${state.soundEnabled?'🔊 Ton ausschalten':'🔇 Ton einschalten'}</button><button class="skip-button" type="button" data-skip>↪ Andere Aufgabe</button><span class="round-count">Aufgabe ${state.current+1} von ${state.examples.length}</span></div></div>
+      <div class="activity-heading"><span class="overline">Mal-Land ✨ · Dein eigener Weg</span></div>
+      <section class="task-card updated-task" aria-label="Malaufgabe selbst zerlegen">
+        <div class="story-panel story-at-top"><div class="story-heading">🌸 Die Geschichte dazu</div>${storyMarkup(p.story)}${scene(p)}</div>
+        <div class="whole-task"><span class="whole-task-label">Die ganze Aufgabe</span><h2 class="whole-task-equation">${p.a} × ${p.b} = ?</h2></div>
+        ${lines.length?`<div class="freeway-notebook" aria-label="Deine selbst gewählten Teilrechnungen"><h3>✏️ Dein bisheriger Rechenweg</h3><ol>${lines.map(line=>`<li>${line}</li>`).join('')}</ol></div>`:''}
+        ${isDone?`<div class="freeway-result"><span class="heart-celebration" aria-hidden="true">💖 🌟 💗</span><strong>${p.a} × ${p.b} = ${p.a*p.b}</strong><p>${state.feedback}</p><p>Probe: ${p.b} × ${p.a} = ${p.a*p.b} ✓</p></div><button type="button" class="continue" data-next>${state.current+1>=state.examples.length?'Runde abschließen →':'Nächste Aufgabe →'}</button>`:
+        `${actions}${numericArea}
+          <p class="freeway-help">💗 Du entscheidest über die Teilrechnungen – die Hilfen sind freiwillig.</p>
+          <div class="help-buttons"><button class="help-button thought" type="button" data-hint>💡 ${state.hintLevel===0?'Denktipp':state.hintLevel===1?'Noch ein Tipp':'Tipps ansehen'}</button><button class="help-button magic" type="button" data-magic>🪄 Eine Rechenidee</button></div>
+          <button class="rescue-button" type="button" data-rescue>🛟 ${state.rescueOpen?'Hilfe schließen':'Hilfe, ich komme nicht weiter'}</button>
+          ${state.hintLevel?`<div class="hint-box" role="note"><strong>💡 Denktipp ${state.hintLevel}:</strong> ${hintTexts[state.hintLevel-1]}</div>`:''}
+          ${magicBox}${rescuePanel}`}
+      </section>`;
+  }
+
+  function renderPlay() {
+    if(state.mode==='div')return renderDivision();
+    if(state.mode==='mul')return renderMultiplication();
+    const p=state.examples[state.current],step=state.steps[state.step],total=state.examples.length;
+    const magic=magicFor(state.mode,p),eq=mathText();
+    const magicContent=magic.lines?`<ol class="magic-list">${magic.lines.map(line=>`<li>${line}</li>`).join('')}</ol>`:`<p>${magic.text}</p>`;
+    const magicBox=state.magicOpen?`<div class="magic-box" role="note"><strong>🪄 ${magic.title}</strong>${magicContent}${magic.example?`<small>${magic.example}</small>`:''}</div>`:'';
+    const plan=learningPlan(state.mode,p);
+    const hasSubsteps=state.mode!=='tab';
+    const rowPicker=state.mode==='tab' ? `<div class="row-choose"><label for="row-select">Welche Einmaleins-Reihe möchtest du üben?</label><select id="row-select" aria-label="Einmaleins-Reihe wählen">${Array.from({length:12},(_,i)=>i+2).map(n=>`<option value="${n}" ${n===state.row?'selected':''}>${n}er-Reihe</option>`).join('')}</select></div>` : '';
+    const story=state.mode==='tab' ? '' : storyMarkup(p.story);
+    const hopBoard=state.mode==='tab'?`<div class="hop-board"><strong>👣 Wähle eine Karte: Am Computer bewegst du die Fußspuren mit der Maus und klickst. Am Handy tippst du mit dem Finger.</strong><div class="hop-grid">${state.examples.map((item,i)=>`<button type="button" data-tab-index="${i}" class="hop-tile ${i===state.current?'selected':''} ${state.tabDone.includes(i)?'completed':''}" ${state.tabDone.includes(i)?'disabled':''} aria-label="${item.b} mal ${item.a}${i===state.current?', ausgewählt':''}${state.tabDone.includes(i)?', gelöst':''}" aria-pressed="${i===state.current}"><span>${item.b} × ${item.a}</span><small>${state.tabDone.includes(i)?'✓':i===state.current?'♥':'♡'}</small></button>`).join('')}</div></div>`:'';
+    const stepTracker=hasSubsteps?`<div class="step-tracker"><div class="step-tracker-title"><strong>Schritt ${state.step+1} von ${state.steps.length}</strong><span>${plan.labels[state.step]}</span></div><div class="progress-track" role="progressbar" aria-label="Rechenschritte" aria-valuemin="0" aria-valuemax="${state.steps.length}" aria-valuenow="${state.step+(state.solved?1:0)}">${state.steps.map((_,i)=>`<span class="progress-cell ${i<state.step||(i===state.step&&state.solved)?'done':i===state.step?'current':''}"></span>`).join('')}</div></div>`:'';
+    const rescuePanel=state.rescueOpen&&!state.solved?`<div class="rescue-panel" role="region" aria-label="Rettungshilfe"><h4>🛟 Wir schauen es uns gemeinsam an</h4><span class="rescue-stage">Erklärung ${state.rescueLevel+1} von 3</span><p class="rescue-story">${rescueGuide()[state.rescueLevel]}</p>
+       ${state.rescueLevel<2?'<button type="button" class="rescue-next" data-rescue-more>Erkläre es mir noch genauer →</button>':
+       '<button type="button" class="rescue-next" data-together>🤝 Zeig mir die Antwort für diesen Schritt</button>'}
+       <p class="rescue-reminder">Du kannst jederzeit oben deine eigene Antwort eingeben.</p></div>`:'';
+    const keys=[1,2,3,4,5,6,7,8,9,'back',0,'check'];
+    const pad=keys.map(k=>k==='back' ? '<button class="key delete" type="button" data-erase aria-label="Letzte Ziffer löschen">⌫</button>'
+      : k==='check' ? '<button class="key check" type="button" data-check aria-label="Antwort prüfen">✓</button>'
+      : `<button class="key" type="button" data-digit="${k}">${k}</button>`).join('');
+    return `<div class="activity-top"><button class="back" type="button" data-home>← Startseite</button><div class="activity-tools"><button class="sound-toggle" type="button" data-sound aria-pressed="${state.soundEnabled}">${state.soundEnabled?'🔊 Ton ausschalten':'🔇 Ton einschalten'}</button>${state.soundEnabled?'<button class="sound-toggle" type="button" data-test-sound>🔔 Testton</button>':''}<button class="skip-button" type="button" data-skip title="Diese Aufgabe auslassen und eine neue bekommen">↪ Andere Aufgabe</button><span class="round-count">${state.mode==='tab'?`${state.tabDone.length} von 10 geschafft`:`Aufgabe ${state.current+1} von ${total}`}</span></div></div>
+      <div class="activity-heading"><span class="overline">${({div:'Geteilt-Land',mul:'Mal-Land',tab:'Zahlen-Hüpfspiel'})[state.mode]} ✨</span></div>
+      ${rowPicker}
+      ${hopBoard}
+      <section class="task-card updated-task" aria-label="Rechenschritt">
+        ${hasSubsteps?`<div class="story-panel story-at-top"><div class="story-heading">🌸 Die Geschichte dazu</div>${story}${scene(p)}</div>`:''}
+        ${hasSubsteps ? `<div class="whole-task"><span class="whole-task-label">Unsere Gesamtaufgabe</span><h2 class="whole-task-equation">${eq} = ?</h2></div>
+          ${stepTracker}
+          <h3 class="main-question">${step.question}</h3>`
+          : `<div class="card-current-label">Diese Karte rechnest du jetzt:</div><h2 class="main-question">${step.question}</h2>`}
+        ${step.detail?`<p class="step-detail">${step.detail}</p>`:''}
+        <div class="answer-section"><span class="answer-label">Deine Antwort</span><div class="answer-screen ${state.solved?'solved':''}" aria-live="polite">${state.entry||'<span class="answer-placeholder">?</span>'}</div></div>
+        ${state.solved ? `<div class="correct-result"><span class="heart-celebration" aria-hidden="true">💖 🌟 💗</span><p class="feedback success" role="status">${state.feedback}</p><div class="equation-steps">${step.solvedLine}</div></div>
+          <button type="button" class="help-button magic solved-magic" data-magic>🪄 ${state.magicOpen?'Zaubertrick einklappen':'Zaubertrick entdecken'}</button>
+          ${magicBox}
+          ${hasSubsteps&&state.step+1===state.steps.length?workingSummary(p):''}
+          <button type="button" class="continue" data-next>${state.mode==='tab'?'Nächste Karte →':state.step+1===state.steps.length?'Nächste Aufgabe →':'Weiter zum nächsten Schritt →'}</button>`
+          : `${state.feedback?`<p class="feedback" role="status">${state.feedback}</p>`:''}
+          <div class="num-pad" aria-label="Zahl eingeben">${pad}</div>
+          <div class="help-buttons"><button type="button" class="help-button thought" data-hint>💡 ${state.hintLevel===0?'Denktipp':state.hintLevel===1?'Noch ein Tipp':'Tipps ansehen'}</button><button type="button" class="help-button magic" data-magic>🪄 Zaubertrick</button></div>
+          <button type="button" class="rescue-button" data-rescue>🛟 ${state.rescueOpen?'Hilfe schließen':'Hilfe, ich komme nicht weiter'}</button>
+          ${state.hintLevel>0?`<div class="hint-box" role="note"><strong>💡 Denktipp ${state.hintLevel}:</strong> ${step.hints[state.hintLevel-1]}</div>`:''}
+          ${magicBox}
+          ${rescuePanel}
+          ${state.hintLevel===2&&!state.rescueOpen?'<p class="hint-followup">Du brauchst mehr Hilfe? Öffne den Rettungsring. Dort erklären wir die Rechnung Schritt für Schritt.</p>':''}`}
+      </section>`;
+  }
+
+  function renderFinish() {
+    return `<section class="finish pink-finish"><div class="finish-graphic">🌸💖🌟</div><span class="eyebrow">Super gemacht!</span>
+      <h1>Deine Runde im Zahlenland ist geschafft, Rosalie!</h1>
+      <p><strong>${state.sessionStats.done} gelöst</strong> · <strong>${state.sessionStats.skipped} übersprungen</strong>. 💗</p>
+      <div class="finish-signoff">💗 Deine Augen dürfen jetzt eine Pause machen. Schau in die Ferne oder geh eine Runde nach draußen!</div>
+      <button type="button" class="continue" data-repeat>Noch eine Runde mit neuen Zahlen →</button>
+      <button type="button" class="continue" data-home>Zurück ins Zahlenland</button></section>`;
+  }
+  function render() {app.innerHTML=state.screen==='home'?renderHome():state.screen==='play'?renderPlay():renderFinish();}
+
+  app.addEventListener('click',e=>{
+    const button=e.target.closest('button');if(!button)return;
+    if(button.hasAttribute('data-home'))return home();
+    if(button.hasAttribute('data-repeat'))return start(state.mode);
+    if(button.hasAttribute('data-mode'))return start(button.dataset.mode);
+    if(button.hasAttribute('data-tab-index'))return chooseTab(Number(button.dataset.tabIndex));
+    if(button.hasAttribute('data-skip'))return skip();
+    if(button.hasAttribute('data-digit'))return addDigit(button.dataset.digit);
+    if(button.hasAttribute('data-erase'))return erase();
+    if(button.hasAttribute('data-check'))return check();
+    if(button.hasAttribute('data-next'))return next();
+    if(button.hasAttribute('data-mul-action'))return mulAction(button.dataset.mulAction);
+    if(button.hasAttribute('data-direct'))return changeDivisionPath(state.division.phase!=='direct');
+    if(button.hasAttribute('data-hint'))return help();
+    if(button.hasAttribute('data-magic')){state.magicOpen=!state.magicOpen;if(state.mode==='div'&&state.magicOpen)state.division.usedHelp=true;if(state.mode==='mul'&&state.magicOpen)state.multiplication.usedHelp=true;render();return;}
+    if(button.hasAttribute('data-sound')){state.soundEnabled=!state.soundEnabled;playSound('toggle');render();return;}
+    if(button.hasAttribute('data-test-sound')){playSound('success');return;}
+    if(button.hasAttribute('data-rescue'))return rescue();
+    if(button.hasAttribute('data-rescue-more'))return rescueMore();
+    if(button.hasAttribute('data-together'))return solveTogether();
+  });
+  app.addEventListener('change',e=>{
+    if(e.target.id==='row-select'){state.row=Number(e.target.value);start('tab');}
+  });
+  document.addEventListener('keydown',e=>{
+    if(state.screen!=='play'||state.solved||e.altKey||e.ctrlKey||e.metaKey||e.repeat)return;
+    const t=e.target;if(t&&['SELECT','INPUT','TEXTAREA'].includes(t.tagName))return;
+    if(/^\d$/.test(e.key)){e.preventDefault();addDigit(e.key);}
+    else if(e.key==='Backspace'){e.preventDefault();erase();}
+    else if(e.key==='Enter'){e.preventDefault();check();}
+  });
+  document.getElementById('brand-home').addEventListener('click',home);
+  render();
+
+  /* Exposes pure game logic to the local test harness; never transmits data. */
+  if(typeof window!=='undefined'&&window.location?.hostname==='localhost')window.__zahleninselTest={state,getSteps,magicFor,start,newExample,render,addDigit,check,checkDivision,changeDivisionPath,divisionHints,help,solveTogether,next,skip,selectExamples,chooseTab,rescue,rescueMore,rescueExplanation,rescueGuide,mulAction,checkMultiplication,currentMulNode,mulHints,mulRescueGuide,scene,storyMarkup,home,DIV,MUL};
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initZahlenland, {once:true});
+} else {
+  initZahlenland();
+}
+
+</script>
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="topbar">
+        <button class="brand" id="brand-home" type="button" aria-label="Zur Startseite">
+          <span class="brand-icon" aria-hidden="true">✳</span>
+          <span>ROSALIES <b>ZAHLENLAND</b></span>
+        </button>
+      </header>
+      <main id="app" aria-live="off"></main>
+    </div>
+  </body>
+</html>
